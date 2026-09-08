@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAYZAN | تولیدکننده دیسک ترمز اسپرت</title>
+<meta name="description" content="RAYZAN تولیدکننده تخصصی دیسک ترمز اسپرت ایرانی. مازندران، آمل، دابودشت. تماس: 09334160215 - 09164700215">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "RAYZAN",
+  "alternateName": "رایزن - ترمز اسپرت",
+  "description": "تولیدکننده تخصصی دیسک ترمز اسپرت ایرانی",
+  "image": "https://rayzanpart.ir/logo.jpg",
+  "telephone": ["+989334160215", "+989164700215"],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "دابودشت",
+    "addressRegion": "مازندران",
+    "addressCountry": "IR"
+  },
+  "founder": { "@type": "Person", "name": "Mohammad Bardideh" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15171b;
+    --steel:#2b2f36;
+    --steel-2:#3d424b;
+    --paper:#f1efe9;
+    --paper-2:#e7e3d9;
+    --red:#c81e2c;
+    --red-dim:#8f1520;
+    --gold:#b8912f;
+    --line: rgba(255,255,255,0.10);
+    --line-dark: rgba(21,23,27,0.12);
+    --radius: 2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Vazirmatn', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--ink);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand img{width:42px; height:42px; border-radius:50%; object-fit:cover; border:2px solid var(--red);}
+  .brand .name{color:#fff; font-weight:800; font-size:20px; letter-spacing:0.5px;}
+  .brand .name span{color:var(--red);}
+  nav.links{display:flex; gap:32px;}
+  nav.links a{color:#cfd2d8; font-size:15px; font-weight:500; transition:color .2s;}
+  nav.links a:hover{color:#fff;}
+  .nav-call{
+    display:flex; align-items:center; gap:8px;
+    background:var(--red); color:#fff; padding:9px 18px;
+    font-weight:600; font-size:14px; border-radius:var(--radius);
+  }
+  .burger{display:none; color:#fff; font-size:24px; background:none; border:none;}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    min-height:86vh;
+    display:flex; align-items:center;
+    background:
+      linear-gradient(100deg, rgba(15,16,19,0.94) 0%, rgba(15,16,19,0.72) 45%, rgba(15,16,19,0.35) 100%),
+      url('factory-front.jpg') center/cover no-repeat;
+    background-color: var(--ink);
+  }
+  .hero-inner{max-width:1180px; margin:0 auto; padding:80px 24px; width:100%;}
+  .hero-tag{
+    color:var(--red); font-weight:700; font-size:14px;
+    letter-spacing:2px; margin-bottom:18px; display:block;
+  }
+  .hero h1{
+    color:#fff; font-size:clamp(40px, 7vw, 84px);
+    font-weight:900; line-height:1.05; max-width:760px;
+    margin-bottom:24px;
+  }
+  .hero p{
+    color:#d6d8db; font-size:19px; max-width:520px; margin-bottom:36px;
+  }
+  .hero-cta{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:15px 30px; font-weight:700; font-size:15px;
+    border-radius:var(--radius); border:2px solid transparent; cursor:pointer;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-red{background:var(--red); color:#fff;}
+  .btn-red:hover{background:var(--red-dim);}
+  .btn-ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,0.35);}
+  .btn-ghost:hover{border-color:#fff;}
+
+  .hero-stats{
+    display:flex; gap:0; margin-top:64px; border-top:1px solid rgba(255,255,255,0.15);
+    padding-top:28px; max-width:640px; flex-wrap:wrap;
+  }
+  .stat{padding-left:40px; margin-left:40px; border-left:1px solid rgba(255,255,255,0.15);}
+  .stat:last-child{border-left:none;}
+  .stat b{display:block; color:#fff; font-size:30px; font-weight:800;}
+  .stat span{color:#a6a9ae; font-size:13px;}
+
+  /* ===== Section heading ===== */
+  .sec{padding:96px 0;}
+  .sec-head{max-width:640px; margin-bottom:56px;}
+  .sec-head h2{font-size:clamp(28px,4vw,42px); font-weight:800; margin-bottom:14px;}
+  .sec-head p{font-size:16px; color:#4c4f55;}
+  .sec-dark{background:var(--ink); color:#fff;}
+  .sec-dark .sec-head p{color:#aeb1b6;}
+
+  /* ===== About ===== */
+  .about-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+  }
+  .about-grid img{border-radius:var(--radius);}
+  .about-text p{color:#3a3d42; font-size:16.5px; margin-bottom:20px;}
+  .about-list{list-style:none; margin-top:28px; display:grid; gap:14px;}
+  .about-list li{display:flex; gap:12px; align-items:flex-start; font-size:15px; color:#2c2f34;}
+  .about-list li::before{
+    content:''; width:8px; height:8px; background:var(--red); margin-top:8px; flex:none;
+  }
+
+  /* ===== Products ===== */
+  .prod-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line-dark);
+    border:1px solid var(--line-dark);
+  }
+  .prod-card{
+    background:var(--paper); padding:28px; position:relative;
+    transition:background .25s ease;
+  }
+  .prod-card:hover{background:#fff;}
+  .prod-thumb{
+    width:100%; aspect-ratio:1/1; background:#fff; border:1px solid var(--line-dark);
+    display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:20px;
+  }
+  .prod-thumb img{width:100%; height:100%; object-fit:cover;}
+  .prod-card h3{font-size:19px; font-weight:800; margin-bottom:6px;}
+  .prod-card .code{color:var(--red); font-size:13px; font-weight:700; letter-spacing:0.5px; margin-bottom:12px; display:block;}
+  .prod-card p{font-size:14px; color:#5a5d63; margin-bottom:16px;}
+  .prod-link{
+    font-size:13.5px; font-weight:700; color:var(--ink); border-bottom:2px solid var(--red);
+    padding-bottom:2px; display:inline-block;
+  }
+
+  /* ===== Quality ===== */
+  .qc-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:2px;
+  }
+  .qc-item{position:relative; aspect-ratio:3/4; overflow:hidden; background:#111;}
+  .qc-item img{width:100%; height:100%; object-fit:cover; opacity:0.85; transition:opacity .3s, transform .4s;}
+  .qc-item:hover img{opacity:1; transform:scale(1.04);}
+  .qc-cap{
+    position:absolute; bottom:0; right:0; left:0; padding:16px;
+    background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+    color:#fff; font-size:13px; font-weight:600;
+  }
+
+  /* ===== Management ===== */
+  .mgmt-box{
+    background:var(--steel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .mgmt-toggle{
+    width:100%; display:flex; align-items:center; justify-content:space-between;
+    padding:26px 32px; background:none; border:none; cursor:pointer; color:#fff;
+    font-family:inherit; font-size:17px; font-weight:700;
+  }
+  .mgmt-toggle .plus{
+    width:30px; height:30px; border:1px solid rgba(255,255,255,0.3); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:18px; flex:none;
+    transition:transform .3s;
+  }
+  .mgmt-toggle[aria-expanded="true"] .plus{transform:rotate(45deg);}
+  .mgmt-panel{
+    max-height:0; overflow:hidden; transition:max-height .4s ease;
+  }
+  .mgmt-panel.open{max-height:600px;}
+  .mgmt-inner{
+    padding:0 32px 36px; display:grid; grid-template-columns:150px 1fr; gap:28px; align-items:start;
+    border-top:1px solid var(--line);
+  }
+  .mgmt-photo{
+    width:150px; height:150px; border-radius:50%; overflow:hidden; margin-top:32px;
+    border:3px solid var(--red);
+  }
+  .mgmt-photo img{width:100%; height:100%; object-fit:cover;}
+  .mgmt-info{margin-top:32px; color:#e2e4e7;}
+  .mgmt-info h4{font-size:20px; font-weight:800; color:#fff; margin-bottom:4px;}
+  .mgmt-info .role{color:var(--red); font-size:13.5px; font-weight:700; margin-bottom:18px; display:block;}
+  .mgmt-info dl{display:grid; grid-template-columns:auto 1fr; gap:10px 16px; font-size:14.5px;}
+  .mgmt-info dt{color:#9a9da2;}
+  .mgmt-info dd{color:#fff; font-weight:600;}
+
+  /* ===== Contact ===== */
+  .contact-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px;}
+  .contact-card{
+    background:#fff; border:1px solid var(--line-dark); padding:32px; border-radius:var(--radius);
+  }
+  .contact-card h3{font-size:15px; font-weight:700; margin-bottom:8px;}
+  .contact-card a, .contact-card p{font-size:15px; color:#3a3d42;}
+  .contact-list{display:grid; gap:24px;}
+  .cta-box{
+    background:var(--red); color:#fff; padding:36px; border-radius:var(--radius);
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .cta-box h3{font-size:24px; font-weight:800; margin-bottom:12px;}
+  .cta-box p{font-size:15px; margin-bottom:24px; opacity:0.92;}
+  .cta-box .btn-ghost{border-color:rgba(255,255,255,0.6);}
+
+  /* ===== Footer ===== */
+  footer{background:var(--ink); color:#9a9da2; padding:36px 0; font-size:13.5px;}
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+
+  /* ===== Responsive ===== */
+  @media (max-width: 860px){
+    nav.links, .nav-call{display:none;}
+    .burger{display:block;}
+    .about-grid, .contact-grid{grid-template-columns:1fr; gap:36px;}
+    .prod-grid{grid-template-columns:repeat(2,1fr);}
+    .qc-grid{grid-template-columns:repeat(2,1fr);}
+    .mgmt-inner{grid-template-columns:1fr; text-align:center;}
+    .mgmt-photo{margin:32px auto 0;}
+    .mgmt-info dl{grid-template-columns:1fr; text-align:center;}
+    .hero{min-height:74vh;}
+    .sec{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <img src="logo.jpg" alt="لوگوی RAYZAN">
+      <span class="name">RAYZAN<span>.</span></span>
+    </div>
+    <nav class="links">
+      <a href="#about">درباره ما</a>
+      <a href="#products">محصولات</a>
+      <a href="#quality">کنترل کیفیت</a>
+      <a href="#management">مدیریت</a>
+      <a href="#contact">تماس</a>
+    </nav>
+    <a class="nav-call" href="tel:09334160215">۰۹۳۳ ۴۱۶ ۰۲۱۵</a>
+    <button class="burger">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">تولیدکننده تخصصی دیسک ترمز اسپرت</span>
+    <h1>ترمزی که<br>به موتور اعتماد می‌کنی.</h1>
+    <p>دیسک‌های ترمز اسپرت RAYZAN با استانداردهای صنعتی و تست کنترل کیفیت دقیق، برای خودروهای ایرانی طراحی و تولید می‌شوند.</p>
+    <div class="hero-cta">
+      <a href="#products" class="btn btn-red">مشاهده محصولات</a>
+      <a href="#contact" class="btn btn-ghost">تماس با ما</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>۶</b><span>مدل خودرو</span></div>
+      <div class="stat"><b>۱۰۰٪</b><span>ساخت داخل</span></div>
+      <div class="stat"><b>مازندران</b><span>آمل، دابودشت</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <img src="factory-line.jpg" alt="خط تولید کارخانه RAYZAN">
+    </div>
+    <div class="about-text">
+      <div class="sec-head" style="margin-bottom:24px;">
+        <h2>ساخته‌شده در کارخانه، تست‌شده روی جاده</h2>
+      </div>
+      <p>RAYZAN از دل نیاز واقعی رانندگان به قطعه‌ای مطمئن برای ترمزگیری در شرایط سخت متولد شد. هر دیسک، پیش از رسیدن به دست مشتری، مراحل کنترل کیفیت را به‌طور کامل طی می‌کند.</p>
+      <ul class="about-list">
+        <li>طراحی اختصاصی برای هر مدل خودرو، بدون واسطه</li>
+        <li>مواد اولیه با دوام بالا در برابر حرارت ترمزگیری</li>
+        <li>بازرسی ابعادی و بصری روی تک‌تک محصولات</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-dark" id="products">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>محصولات</h2>
+      <p>دیسک ترمز اسپرت، مطابق با کد فنی هر خودرو</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="prod-grid">
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-tiba.jpg" alt="دیسک ترمز اسپرت تیبا"></div>
+        <span class="code">TIBA / SAIPA</span>
+        <h3>دیسک ترمز اسپرت تیبا</h3>
+        <p>مطابق با استاندارد کارخانه‌ای، مقاوم در برابر حرارت بالا.</p>
+        <a class="prod-link" href="tel:09334160215">استعلام قیمت</a>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-pride.jpg" alt="دیسک ترمز اسپرت پراید"></div>
+        <span class="code">PRIDE / SAIPA</span>
+        <h3>دیسک ترمز اسپرت پراید</h3>
+        <p>سازگار با تمامی نسل‌های پراید، نصب استاندارد.</p>
+        <a class="prod-link" href="tel:09334160215">استعلام قیمت</a>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-peugeot405.jpg" alt="دیسک ترمز اسپرت پژو 405"></div>
+        <span class="code">PEUGEOT 405</span>
+        <h3>دیسک ترمز اسپرت پژو ۴۰۵</h3>
+        <p>دقت ابعادی بالا برای ترمزگیری یکنواخت.</p>
+        <a class="prod-link" href="tel:09334160215">استعلام قیمت</a>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-peugeot206.jpg" alt="دیسک ترمز اسپرت پژو 206"></div>
+        <span class="code">PEUGEOT 206</span>
+        <h3>دیسک ترمز اسپرت پژو ۲۰۶</h3>
+        <p>طراحی‌شده برای رانندگی شهری و برون‌شهری.</p>
+        <a class="prod-link" href="tel:09334160215">استعلام قیمت</a>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-samand.jpg" alt="دیسک ترمز اسپرت سمند ملی"></div>
+        <span class="code">SAMAND / MELLI</span>
+        <h3>دیسک ترمز اسپرت سمند ملی</h3>
+        <p>ساخته‌شده مطابق کد فنی سمند ملی.</p>
+        <a class="prod-link" href="tel:09334160215">استعلام قیمت</a>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-l90.jpg" alt="دیسک ترمز اسپرت سمند ال 90"></div>
+        <span class="code">SAMAND L90</span>
+        <h3>دیسک ترمز اسپرت ال۹۰</h3>
+        <p>مشخصات فنی کامل در فایل پیوست قابل مشاهده است.</p>
+        <a class="prod-link" href="L90.pdf" target="_blank">دانلود مشخصات (PDF)</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="quality">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>کنترل کیفیت</h2>
+      <p>هر محصول پیش از بسته‌بندی، مراحل بازرسی را پشت سر می‌گذارد.</p>
+    </div>
+  </div>
+  <div class="qc-grid">
+    <div class="qc-item"><img src="quality-1.jpg" alt="کنترل کیفیت ۱"><div class="qc-cap">بازرسی ابعادی</div></div>
+    <div class="qc-item"><img src="quality-2.jpg" alt="کنترل کیفیت ۲"><div class="qc-cap">تست سطح ترمزگیری</div></div>
+    <div class="qc-item"><img src="quality-3.jpg" alt="کنترل کیفیت ۳"><div class="qc-cap">بازرسی نهایی</div></div>
+    <div class="qc-item"><img src="quality-4.jpg" alt="کنترل کیفیت ۴"><div class="qc-cap">بسته‌بندی و ارسال</div></div>
+  </div>
+</section>
+
+<section class="sec" id="management">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>مدیریت کارخانه</h2>
+      <p>مسئولیت مستقیم تولید و کیفیت محصولات RAYZAN.</p>
+    </div>
+    <div class="mgmt-box">
+      <button class="mgmt-toggle" aria-expanded="false" onclick="
+        const p=this.nextElementSibling;
+        const open=p.classList.toggle('open');
+        this.setAttribute('aria-expanded', open);
+      ">
+        مشاهده مشخصات مدیر کارخانه
+        <span class="plus">+</span>
+      </button>
+      <div class="mgmt-panel">
+        <div class="mgmt-inner">
+          <div class="mgmt-photo"><img src="management.jpg" alt="محمد بردیده"></div>
+          <div class="mgmt-info">
+            <h4>محمد بردیده</h4>
+            <span class="role">مدیر کارخانه و بنیان‌گذار RAYZAN</span>
+            <dl>
+              <dt>رشته تحصیلی</dt><dd>برق الکترونیک</dd>
+              <dt>مجوز فعالیت</dt><dd>دارای جواز کسب فروش عمده لوازم یدکی</dd>
+              <dt>محل استقرار</dt><dd>مازندران، آمل، دابودشت</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-card">
+      <div class="sec-head" style="margin-bottom:28px;">
+        <h2 style="font-size:26px;">اطلاعات تماس</h2>
+      </div>
+      <div class="contact-list">
+        <div>
+          <h3>تلفن تماس</h3>
+          <a href="tel:09334160215">۰۹۳۳۴۱۶۰۲۱۵</a><br>
+          <a href="tel:09164700215">۰۹۱۶۴۷۰۰۲۱۵</a>
+        </div>
+        <div>
+          <h3>آدرس کارخانه</h3>
+          <p>مازندران، شهرستان آمل، شهر دابودشت</p>
+        </div>
+        <div>
+          <h3>ساعات پاسخگویی</h3>
+          <p>شنبه تا پنجشنبه، ۸ صبح تا ۶ عصر</p>
+        </div>
+      </div>
+    </div>
+    <div class="cta-box">
+      <h3>سفارش عمده دارید؟</h3>
+      <p>برای مغازه‌داران، تعمیرگاه‌ها و فروشگاه‌های لوازم یدکی قیمت عمده جداگانه ارائه می‌شود.</p>
+      <a href="tel:09334160215" class="btn btn-ghost">تماس مستقیم با کارخانه</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© RAYZAN — تولیدکننده دیسک ترمز اسپرت</span>
+    <span>مازندران، آمل، دابودشت</span>
+  </div>
+</footer>
+
+</body>
+</html>
