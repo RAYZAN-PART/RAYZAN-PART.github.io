@@ -25,7 +25,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Lalezar&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#15171b;
@@ -33,8 +33,8 @@
     --steel-2:#3d424b;
     --paper:#f1efe9;
     --paper-2:#e7e3d9;
-    --red:#c81e2c;
-    --red-dim:#8f1520;
+    --red:#1a3fa0;
+    --red-dim:#102766;
     --gold:#b8912f;
     --line: rgba(255,255,255,0.10);
     --line-dark: rgba(21,23,27,0.12);
@@ -49,6 +49,7 @@
     line-height:1.7;
     -webkit-font-smoothing:antialiased;
   }
+  h1,h2,h3,.brand .name{font-family:'Lalezar','Vazirmatn',sans-serif;}
   img{max-width:100%; display:block;}
   a{color:inherit; text-decoration:none;}
   .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
@@ -65,9 +66,9 @@
   }
   .brand{display:flex; align-items:center; gap:12px;}
   .brand img{width:42px; height:42px; border-radius:50%; object-fit:cover; border:2px solid var(--red);}
-  .brand .name{color:#fff; font-weight:800; font-size:20px; letter-spacing:0.5px;}
+  .brand .name{color:#fff; font-weight:800; font-size:22px; letter-spacing:0.5px;}
   .brand .name span{color:var(--red);}
-  nav.links{display:flex; gap:32px;}
+  nav.links{display:flex; gap:28px;}
   nav.links a{color:#cfd2d8; font-size:15px; font-weight:500; transition:color .2s;}
   nav.links a:hover{color:#fff;}
   .nav-call{
@@ -75,7 +76,17 @@
     background:var(--red); color:#fff; padding:9px 18px;
     font-weight:600; font-size:14px; border-radius:var(--radius);
   }
-  .burger{display:none; color:#fff; font-size:24px; background:none; border:none;}
+  .burger{display:none; color:#fff; font-size:26px; background:none; border:none; cursor:pointer; z-index:120;}
+
+  /* ===== Mobile menu (off-canvas) ===== */
+  .mobile-menu{
+    position:fixed; inset:0; background:rgba(10,11,13,0.97); z-index:110;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:26px;
+    opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .mobile-menu.open{opacity:1; pointer-events:auto;}
+  .mobile-menu a{color:#fff; font-size:22px; font-weight:700;}
+  .mobile-menu .nav-call{margin-top:10px;}
 
   /* ===== Hero ===== */
   .hero{
@@ -86,15 +97,17 @@
       linear-gradient(100deg, rgba(15,16,19,0.94) 0%, rgba(15,16,19,0.72) 45%, rgba(15,16,19,0.35) 100%),
       url('factory-front.jpg') center/cover no-repeat;
     background-color: var(--ink);
+    overflow:hidden;
   }
   .hero-inner{max-width:1180px; margin:0 auto; padding:80px 24px; width:100%;}
   .hero-tag{
-    color:var(--red); font-weight:700; font-size:14px;
-    letter-spacing:2px; margin-bottom:18px; display:block;
+    color:var(--red); background:#fff; padding:4px 10px; border-radius:2px;
+    font-weight:700; font-size:14px;
+    letter-spacing:2px; margin-bottom:18px; display:inline-block;
   }
   .hero h1{
-    color:#fff; font-size:clamp(40px, 7vw, 84px);
-    font-weight:900; line-height:1.05; max-width:760px;
+    color:#fff; font-size:clamp(36px, 6.5vw, 72px);
+    font-weight:400; line-height:1.25; max-width:760px;
     margin-bottom:24px;
   }
   .hero p{
@@ -105,6 +118,7 @@
     display:inline-block; padding:15px 30px; font-weight:700; font-size:15px;
     border-radius:var(--radius); border:2px solid transparent; cursor:pointer;
     transition:transform .15s ease, background .2s ease;
+    font-family:'Vazirmatn',sans-serif;
   }
   .btn:hover{transform:translateY(-2px);}
   .btn-red{background:var(--red); color:#fff;}
@@ -118,13 +132,38 @@
   }
   .stat{padding-left:40px; margin-left:40px; border-left:1px solid rgba(255,255,255,0.15);}
   .stat:last-child{border-left:none;}
-  .stat b{display:block; color:#fff; font-size:30px; font-weight:800;}
+  .stat b{display:block; color:#fff; font-size:30px; font-weight:800; font-family:'Vazirmatn',sans-serif;}
   .stat span{color:#a6a9ae; font-size:13px;}
+
+  /* ===== Hero clock + calendar widget ===== */
+  .hero-widgets{
+    position:absolute; top:28px; left:28px; display:flex; gap:14px; z-index:5;
+  }
+  .clock-card{
+    width:92px; height:92px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #2a55c9, var(--red-dim));
+    border:3px solid #dfe4ee; box-shadow:0 6px 18px rgba(0,0,0,0.35); position:relative;
+  }
+  .clock-card .tick{position:absolute; background:#e9ecf3; width:2px; height:6px; top:4px; left:50%; transform-origin:1px 42px;}
+  .clock-hand{position:absolute; background:#f4f6fb; left:50%; bottom:50%; transform-origin:bottom center; border-radius:2px;}
+  .hand-h{width:3px; height:22px; margin-left:-1.5px;}
+  .hand-m{width:2px; height:30px; margin-left:-1px;}
+  .hand-s{width:1px; height:34px; margin-left:-0.5px; background:var(--gold);}
+  .clock-center{position:absolute; width:6px; height:6px; background:#fff; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%);}
+  .cal-card{
+    background:#fff; border-radius:8px; overflow:hidden; width:92px; text-align:center;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+  }
+  .cal-top{background:var(--red); color:#fff; font-size:11px; font-weight:700; padding:4px 0;}
+  .cal-day{font-size:28px; font-weight:800; color:var(--ink); padding:4px 0 0; font-family:'Vazirmatn',sans-serif;}
+  .cal-month{font-size:11px; color:#666; padding-bottom:6px;}
+  .cal-card.holiday .cal-day{color:var(--red);}
+  .cal-holiday-tag{font-size:10px; color:#fff; background:var(--red); padding:2px 0; display:none;}
+  .cal-card.holiday .cal-holiday-tag{display:block;}
 
   /* ===== Section heading ===== */
   .sec{padding:96px 0;}
   .sec-head{max-width:640px; margin-bottom:56px;}
-  .sec-head h2{font-size:clamp(28px,4vw,42px); font-weight:800; margin-bottom:14px;}
+  .sec-head h2{font-size:clamp(26px,4vw,40px); font-weight:400; margin-bottom:14px;}
   .sec-head p{font-size:16px; color:#4c4f55;}
   .sec-dark{background:var(--ink); color:#fff;}
   .sec-dark .sec-head p{color:#aeb1b6;}
@@ -156,12 +195,12 @@
     display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:20px;
   }
   .prod-thumb img{width:100%; height:100%; object-fit:cover;}
-  .prod-card h3{font-size:19px; font-weight:800; margin-bottom:6px;}
+  .prod-card h3{font-size:20px; font-weight:400; margin-bottom:6px;}
   .prod-card .code{color:var(--red); font-size:13px; font-weight:700; letter-spacing:0.5px; margin-bottom:12px; display:block;}
   .prod-card p{font-size:14px; color:#5a5d63; margin-bottom:16px;}
   .prod-link{
     font-size:13.5px; font-weight:700; color:var(--ink); border-bottom:2px solid var(--red);
-    padding-bottom:2px; display:inline-block;
+    padding-bottom:2px; display:inline-block; background:none; cursor:pointer; font-family:'Vazirmatn',sans-serif;
   }
 
   /* ===== Quality ===== */
@@ -169,12 +208,12 @@
     display:grid; grid-template-columns:repeat(4, 1fr); gap:2px;
   }
   .qc-item{position:relative; aspect-ratio:3/4; overflow:hidden; background:#111;}
-  .qc-item img{width:100%; height:100%; object-fit:cover; opacity:0.85; transition:opacity .3s, transform .4s;}
+  .qc-item img{width:100%; height:100%; object-fit:cover; opacity:0.9; transition:opacity .3s, transform .4s;}
   .qc-item:hover img{opacity:1; transform:scale(1.04);}
   .qc-cap{
-    position:absolute; bottom:0; right:0; left:0; padding:16px;
-    background:linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-    color:#fff; font-size:13px; font-weight:600;
+    position:absolute; bottom:0; right:0; left:0; padding:14px;
+    background:var(--red);
+    color:#fff; font-size:13.5px; font-weight:800; text-align:center;
   }
 
   /* ===== Management ===== */
@@ -207,11 +246,45 @@
   }
   .mgmt-photo img{width:100%; height:100%; object-fit:cover;}
   .mgmt-info{margin-top:32px; color:#e2e4e7;}
-  .mgmt-info h4{font-size:20px; font-weight:800; color:#fff; margin-bottom:4px;}
+  .mgmt-info h4{font-size:20px; font-weight:400; color:#fff; margin-bottom:4px;}
   .mgmt-info .role{color:var(--red); font-size:13.5px; font-weight:700; margin-bottom:18px; display:block;}
   .mgmt-info dl{display:grid; grid-template-columns:auto 1fr; gap:10px 16px; font-size:14.5px;}
   .mgmt-info dt{color:#9a9da2;}
   .mgmt-info dd{color:#fff; font-weight:600;}
+
+  /* ===== Info cards (guarantee / wholesale / bulk) ===== */
+  .info-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .info-card{
+    background:#fff; border:1px solid var(--line-dark); border-radius:8px; padding:30px;
+  }
+  .info-card .ic-badge{
+    width:46px; height:46px; border-radius:50%; background:var(--red); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:18px;
+  }
+  .info-card h3{font-size:19px; font-weight:700; margin-bottom:12px;}
+  .info-card ul{list-style:none; display:grid; gap:10px;}
+  .info-card li{font-size:14.5px; color:#3a3d42; display:flex; gap:8px; align-items:flex-start;}
+  .info-card li::before{content:'—'; color:var(--red); flex:none;}
+
+  /* ===== Order / cart ===== */
+  .order-box{
+    background:#fff; border:1px solid var(--line-dark); border-radius:8px; padding:36px; max-width:640px; margin:0 auto;
+  }
+  .order-box label{display:block; font-size:14px; font-weight:700; margin-bottom:6px; margin-top:18px;}
+  .order-box label:first-of-type{margin-top:0;}
+  .order-box input, .order-box select, .order-box textarea{
+    width:100%; padding:12px 14px; border:1px solid var(--line-dark); border-radius:6px;
+    font-family:'Vazirmatn',sans-serif; font-size:15px; background:var(--paper);
+  }
+  .order-box textarea{resize:vertical; min-height:80px;}
+  .order-submit{
+    margin-top:26px; width:100%; background:var(--red); color:#fff; border:none; padding:15px;
+    border-radius:6px; font-weight:700; font-size:16px; cursor:pointer; font-family:'Vazirmatn',sans-serif;
+  }
+  .order-submit:hover{background:var(--red-dim);}
+  .order-msg{margin-top:14px; font-size:14px; font-weight:700; display:none;}
+  .order-msg.ok{color:#1a7d3a; display:block;}
+  .order-msg.err{color:#b3261e; display:block;}
 
   /* ===== Contact ===== */
   .contact-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px;}
@@ -225,12 +298,20 @@
     background:var(--red); color:#fff; padding:36px; border-radius:var(--radius);
     display:flex; flex-direction:column; justify-content:center;
   }
-  .cta-box h3{font-size:24px; font-weight:800; margin-bottom:12px;}
+  .cta-box h3{font-size:24px; font-weight:400; margin-bottom:12px;}
   .cta-box p{font-size:15px; margin-bottom:24px; opacity:0.92;}
   .cta-box .btn-ghost{border-color:rgba(255,255,255,0.6);}
 
+  .social-row{display:flex; gap:14px; margin-top:26px;}
+  .social-row a{
+    width:42px; height:42px; border-radius:50%; background:var(--ink); display:flex;
+    align-items:center; justify-content:center; transition:background .2s;
+  }
+  .social-row a:hover{background:var(--red);}
+  .social-row svg{width:20px; height:20px; fill:#fff;}
+
   /* ===== Footer ===== */
-  footer{background:var(--ink); color:#9a9da2; padding:36px 0; font-size:13.5px;}
+  footer{background:var(--ink); color:#9a9da2; padding:28px 0; font-size:13.5px;}
   .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
 
   /* ===== Responsive ===== */
@@ -240,11 +321,13 @@
     .about-grid, .contact-grid{grid-template-columns:1fr; gap:36px;}
     .prod-grid{grid-template-columns:repeat(2,1fr);}
     .qc-grid{grid-template-columns:repeat(2,1fr);}
+    .info-grid{grid-template-columns:1fr;}
     .mgmt-inner{grid-template-columns:1fr; text-align:center;}
     .mgmt-photo{margin:32px auto 0;}
     .mgmt-info dl{grid-template-columns:1fr; text-align:center;}
-    .hero{min-height:74vh;}
+    .hero{min-height:80vh;}
     .sec{padding:64px 0;}
+    .hero-widgets{top:auto; bottom:20px; left:20px;}
   }
 </style>
 </head>
@@ -260,15 +343,41 @@
       <a href="#about">درباره ما</a>
       <a href="#products">محصولات</a>
       <a href="#quality">کنترل کیفیت</a>
+      <a href="#guarantee">گارانتی</a>
+      <a href="#wholesale">فروش عمده</a>
       <a href="#management">مدیریت</a>
+      <a href="#order">ثبت سفارش</a>
       <a href="#contact">تماس</a>
     </nav>
     <a class="nav-call" href="tel:09334160215">۰۹۳۳ ۴۱۶ ۰۲۱۵</a>
-    <button class="burger">☰</button>
+    <button class="burger" onclick="document.getElementById('mobileMenu').classList.add('open')">☰</button>
   </div>
 </header>
 
+<div class="mobile-menu" id="mobileMenu">
+  <button class="burger" style="position:absolute; top:22px; left:22px;" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
+  <a href="#about" onclick="closeMenu()">درباره ما</a>
+  <a href="#products" onclick="closeMenu()">محصولات</a>
+  <a href="#quality" onclick="closeMenu()">کنترل کیفیت</a>
+  <a href="#guarantee" onclick="closeMenu()">شرایط گارانتی</a>
+  <a href="#wholesale" onclick="closeMenu()">فروش عمده</a>
+  <a href="#bulk" onclick="closeMenu()">فروش فله</a>
+  <a href="#management" onclick="closeMenu()">مدیریت کارخانه</a>
+  <a href="#order" onclick="closeMenu()">ثبت سفارش</a>
+  <a href="#contact" onclick="closeMenu()">تماس با ما</a>
+  <a class="nav-call" href="tel:09334160215">۰۹۳۳ ۴۱۶ ۰۲۱۵</a>
+</div>
+
 <section class="hero">
+  <div class="hero-widgets">
+    <div class="clock-card" id="clockCard"></div>
+    <div class="cal-card" id="calCard">
+      <div class="cal-top" id="calWeekday">--</div>
+      <div class="cal-day" id="calDay">--</div>
+      <div class="cal-month" id="calMonth">--</div>
+      <div class="cal-holiday-tag">تعطیل</div>
+    </div>
+  </div>
   <div class="hero-inner">
     <span class="hero-tag">تولیدکننده تخصصی دیسک ترمز اسپرت</span>
     <h1>کیفیت در تولید<br>پیشرو در خدمات<br>تضمین در اصالت<br>با پشتیبانی ۷۲۴</h1>
@@ -319,7 +428,7 @@
         <span class="code">TIBA / SAIPA</span>
         <h3>دیسک ترمز اسپرت تیبا</h3>
         <p>مطابق با استاندارد کارخانه‌ای، مقاوم در برابر حرارت بالا.</p>
-        <a class="prod-link" href="tel:09334160215">استعلام قیمت</a>
+        <button class="prod-link" onclick="goOrder('تیبا')">افزودن به سفارش</button>
       </div>
 
       <div class="prod-card">
@@ -327,7 +436,7 @@
         <span class="code">PRIDE / SAIPA</span>
         <h3>دیسک ترمز اسپرت پراید</h3>
         <p>سازگار با تمامی نسل‌های پراید، نصب استاندارد.</p>
-        <a class="prod-link" href="tel:09334160215">استعلام قیمت</a>
+        <button class="prod-link" onclick="goOrder('پراید')">افزودن به سفارش</button>
       </div>
 
       <div class="prod-card">
@@ -335,7 +444,7 @@
         <span class="code">PEUGEOT 405</span>
         <h3>دیسک ترمز اسپرت پژو ۴۰۵</h3>
         <p>دقت ابعادی بالا برای ترمزگیری یکنواخت.</p>
-        <a class="prod-link" href="tel:09334160215">استعلام قیمت</a>
+        <button class="prod-link" onclick="goOrder('پژو ۴۰۵')">افزودن به سفارش</button>
       </div>
 
       <div class="prod-card">
@@ -343,7 +452,7 @@
         <span class="code">PEUGEOT 206</span>
         <h3>دیسک ترمز اسپرت پژو ۲۰۶</h3>
         <p>طراحی‌شده برای رانندگی شهری و برون‌شهری.</p>
-        <a class="prod-link" href="tel:09334160215">استعلام قیمت</a>
+        <button class="prod-link" onclick="goOrder('پژو ۲۰۶')">افزودن به سفارش</button>
       </div>
 
       <div class="prod-card">
@@ -351,7 +460,7 @@
         <span class="code">SAMAND / MELLI</span>
         <h3>دیسک ترمز اسپرت سمند ملی</h3>
         <p>ساخته‌شده مطابق کد فنی سمند ملی.</p>
-        <a class="prod-link" href="tel:09334160215">استعلام قیمت</a>
+        <button class="prod-link" onclick="goOrder('سمند ملی')">افزودن به سفارش</button>
       </div>
 
       <div class="prod-card">
@@ -378,6 +487,94 @@
     <div class="qc-item"><img src="quality-2.jpg" alt="کنترل کیفیت ۲"><div class="qc-cap">تست سطح ترمزگیری</div></div>
     <div class="qc-item"><img src="quality-3.jpg" alt="کنترل کیفیت ۳"><div class="qc-cap">بازرسی نهایی</div></div>
     <div class="qc-item"><img src="quality-4.jpg" alt="کنترل کیفیت ۴"><div class="qc-cap">بسته‌بندی و ارسال</div></div>
+  </div>
+</section>
+
+<section class="sec sec-dark" id="guarantee">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>شرایط گارانتی</h2>
+      <p>تعهد کارخانه به کیفیت محصولات RAYZAN</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-badge">✓</div>
+        <h3>مدت گارانتی</h3>
+        <ul>
+          <li>۳ تا ۶ ماه، در صورت عدم خوردگی دیسک ترمز</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="ic-badge">✓</div>
+        <h3>شرط پوشش گارانتی</h3>
+        <ul>
+          <li>عدم ضربه‌خوردگی، به‌خصوص در قسمت داخلی و بیرونی فلنچ‌ها</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="ic-badge">✓</div>
+        <h3>نحوه استفاده از گارانتی</h3>
+        <ul>
+          <li>تعویض فقط در مراکزی که توسط فروشنده‌های لوازم یدکی معرفی می‌شوند</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="wholesale">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>فروش عمده</h2>
+      <p>شرایط ویژه برای مغازه‌داران و فروشگاه‌های لوازم یدکی</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-badge">۳۰</div>
+        <h3>حداقل سفارش</h3>
+        <ul><li>۳۰ عدد بسته‌بندی‌شده</li></ul>
+      </div>
+      <div class="info-card">
+        <div class="ic-badge">٪</div>
+        <h3>تخفیفات</h3>
+        <ul><li>تخفیفات به‌صورت حضوری ارائه می‌شود</li></ul>
+      </div>
+      <div class="info-card">
+        <div class="ic-badge">₪</div>
+        <h3>شرایط پرداخت</h3>
+        <ul>
+          <li>دو سفارش اول: نقدی</li>
+          <li>سفارش‌های بعدی: توافقی</li>
+          <li>میزان تخفیف بسته به تعداد و شرایط پرداخت متفاوت است</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec-dark" id="bulk">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>فروش فله (بدون بسته‌بندی)</h2>
+      <p>مناسب برای تعمیرگاه‌ها و توزیع‌کنندگان بزرگ</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <div class="ic-badge">۵۰</div>
+        <h3>حداقل سفارش</h3>
+        <ul><li>۵۰ عدد، بدون بسته‌بندی</li></ul>
+      </div>
+      <div class="info-card">
+        <div class="ic-badge">٪</div>
+        <h3>تخفیفات</h3>
+        <ul><li>توافقی، بر اساس تعداد سفارش</li></ul>
+      </div>
+      <div class="info-card">
+        <div class="ic-badge">₪</div>
+        <h3>شرایط پرداخت</h3>
+        <ul><li>بسته به تعداد و شرایط پرداخت، توافقی</li></ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -414,6 +611,42 @@
   </div>
 </section>
 
+<section class="sec sec-dark" id="order">
+  <div class="wrap">
+    <div class="sec-head" style="margin:0 auto 40px; text-align:center; max-width:100%;">
+      <h2>ثبت سفارش</h2>
+      <p>فرم زیر را پر کنید؛ همکاران ما در اسرع وقت با شما تماس می‌گیرند.</p>
+    </div>
+    <form class="order-box" id="orderForm">
+      <label for="ofName">نام و نام خانوادگی</label>
+      <input type="text" id="ofName" required>
+
+      <label for="ofPhone">شماره تماس</label>
+      <input type="tel" id="ofPhone" required>
+
+      <label for="ofProduct">محصول</label>
+      <select id="ofProduct">
+        <option>تیبا</option>
+        <option>پراید</option>
+        <option>پژو ۴۰۵</option>
+        <option>پژو ۲۰۶</option>
+        <option>سمند ملی</option>
+        <option>سمند ال۹۰</option>
+        <option>سایر / مشخص نیست</option>
+      </select>
+
+      <label for="ofQty">تعداد</label>
+      <input type="number" id="ofQty" min="1" value="1">
+
+      <label for="ofNote">توضیحات (اختیاری)</label>
+      <textarea id="ofNote"></textarea>
+
+      <button type="submit" class="order-submit">ثبت سفارش</button>
+      <div class="order-msg" id="ofMsg"></div>
+    </form>
+  </div>
+</section>
+
 <section class="sec" id="contact">
   <div class="wrap contact-grid">
     <div class="contact-card">
@@ -435,11 +668,28 @@
           <p>شنبه تا پنجشنبه، ۸ صبح تا ۶ عصر</p>
         </div>
       </div>
+      <div class="social-row">
+        <a href="https://wa.me/989164700215" target="_blank" aria-label="واتس‌اپ">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.06-1.33A9.94 9.94 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.6 0-3.1-.44-4.38-1.2l-.31-.18-3 .79.8-2.93-.2-.3A7.94 7.94 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.4-5.6c-.24-.12-1.43-.71-1.65-.79-.22-.08-.38-.12-.54.12-.16.24-.62.79-.76.95-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.95-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.4-.54-.41-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.43-.58 1.63-1.15.2-.57.2-1.05.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
+        </a>
+        <a href="https://t.me/rayzanpart" target="_blank" aria-label="تلگرام">
+          <svg viewBox="0 0 24 24"><path d="M21.9 4.3L18.6 20c-.25 1.1-.9 1.37-1.82.85l-5.03-3.72-2.43 2.34c-.27.27-.5.5-1.02.5l.37-5.18 9.42-8.5c.41-.36-.09-.57-.63-.2L6.1 13.06 1.15 11.5c-1.07-.34-1.09-1.07.23-1.58L20.6 3.23c.9-.33 1.68.2 1.3 1.07z"/></svg>
+        </a>
+        <a href="https://rubika.ir/RAYZAN2659" target="_blank" aria-label="روبیکا">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><text x="12" y="16" font-size="10" text-anchor="middle" fill="#15171b">R</text></svg>
+        </a>
+        <a href="https://ble.ir/rayzanpartorg" target="_blank" aria-label="بله">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><text x="12" y="16" font-size="10" text-anchor="middle" fill="#15171b">B</text></svg>
+        </a>
+        <a href="mailto:info@rayzanpart.ir" aria-label="ایمیل">
+          <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.01L12 12l8-5.99V6H4zm16 12V8.24l-8 6-8-6V18h16z"/></svg>
+        </a>
+      </div>
     </div>
     <div class="cta-box">
       <h3>سفارش عمده دارید؟</h3>
       <p>برای مغازه‌داران، تعمیرگاه‌ها و فروشگاه‌های لوازم یدکی قیمت عمده جداگانه ارائه می‌شود.</p>
-      <a href="tel:09334160215" class="btn btn-ghost">تماس مستقیم با کارخانه</a>
+      <a href="#wholesale" class="btn btn-ghost">مشاهده شرایط فروش عمده</a>
     </div>
   </div>
 </section>
@@ -447,9 +697,126 @@
 <footer>
   <div class="wrap footer-row">
     <span>© RAYZAN — تولیدکننده دیسک ترمز اسپرت</span>
-    <span>مازندران، آمل، دابودشت</span>
   </div>
 </footer>
+
+<script>
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
+
+function goOrder(productName){
+  document.getElementById('ofProduct').value = productName;
+  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+}
+
+/* ===== Live analog clock ===== */
+function buildClockTicks(){
+  const card = document.getElementById('clockCard');
+  for(let i=0;i<12;i++){
+    const t = document.createElement('div');
+    t.className='tick';
+    t.style.transform = 'rotate(' + (i*30) + 'deg)';
+    card.appendChild(t);
+  }
+  ['h','m','s'].forEach(function(k){
+    const h = document.createElement('div');
+    h.className = 'clock-hand hand-'+k;
+    h.id = 'hand-'+k;
+    card.appendChild(h);
+  });
+  const c = document.createElement('div');
+  c.className='clock-center';
+  card.appendChild(c);
+}
+function tickClock(){
+  const now = new Date();
+  const h = now.getHours()%12, m = now.getMinutes(), s = now.getSeconds();
+  document.getElementById('hand-h').style.transform = 'rotate(' + (h*30 + m*0.5) + 'deg)';
+  document.getElementById('hand-m').style.transform = 'rotate(' + (m*6) + 'deg)';
+  document.getElementById('hand-s').style.transform = 'rotate(' + (s*6) + 'deg)';
+}
+
+/* ===== Gregorian -> Jalali conversion ===== */
+function toJalali(gy, gm, gd){
+  const g_d_m = [0,31,59,90,120,151,181,212,243,273,304,334];
+  let jy = (gy <= 1600) ? 0 : 979;
+  gy -= (gy <= 1600) ? 621 : 1600;
+  const gy2 = (gm > 2) ? (gy + 1) : gy;
+  let days = (365*gy) + (Math.floor((gy2+3)/4)) - (Math.floor((gy2+99)/100)) + (Math.floor((gy2+399)/400)) - 80 + gd + g_d_m[gm-1];
+  jy += 33*Math.floor(days/12053);
+  days %= 12053;
+  jy += 4*Math.floor(days/1461);
+  days %= 1461;
+  if (days > 365){ jy += Math.floor((days-1)/365); days = (days-1)%365; }
+  let jm, jd;
+  if (days < 186){ jm = 1 + Math.floor(days/31); jd = 1 + (days%31); }
+  else { jm = 7 + Math.floor((days-186)/30); jd = 1 + ((days-186)%30); }
+  return [jy, jm, jd];
+}
+
+const jWeekdays = ['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
+const jMonths = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+/* تعطیلات ثابت رسمی (شمسی) - تعطیلات مذهبی چون بر اساس تقویم قمری هستند سالانه جابجا می‌شوند و باید دستی به‌روزرسانی شوند */
+const fixedHolidays = ['1-1','1-2','1-3','1-4','1-12','1-13','3-14','3-15','11-22','12-29'];
+
+function updateCalendar(){
+  const now = new Date();
+  const [jy, jm, jd] = toJalali(now.getFullYear(), now.getMonth()+1, now.getDate());
+  document.getElementById('calDay').textContent = jd.toLocaleString('fa-IR');
+  document.getElementById('calMonth').textContent = jMonths[jm-1];
+  const wd = now.getDay(); // 0=Sunday
+  document.getElementById('calWeekday').textContent = jWeekdays[wd];
+  const isFriday = (wd === 5);
+  const isFixedHoliday = fixedHolidays.includes(jm+'-'+jd);
+  const card = document.getElementById('calCard');
+  if (isFriday || isFixedHoliday){ card.classList.add('holiday'); }
+  else { card.classList.remove('holiday'); }
+}
+
+buildClockTicks();
+tickClock();
+setInterval(tickClock, 1000);
+updateCalendar();
+setInterval(updateCalendar, 60000);
+
+/* ===== Order form -> Cloudflare Worker -> Telegram ===== */
+document.getElementById('orderForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const msg = document.getElementById('ofMsg');
+  msg.className = 'order-msg';
+  msg.textContent = 'در حال ارسال...';
+  msg.style.display = 'block';
+  msg.style.color = '#666';
+
+  const payload = {
+    name: document.getElementById('ofName').value,
+    phone: document.getElementById('ofPhone').value,
+    product: document.getElementById('ofProduct').value,
+    quantity: document.getElementById('ofQty').value,
+    note: document.getElementById('ofNote').value
+  };
+
+  fetch('https://rayzan-order.mhbbardideh90.workers.dev', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
+  })
+  .then(function(res){ return res.json(); })
+  .then(function(data){
+    if (data.ok){
+      msg.className = 'order-msg ok';
+      msg.textContent = 'سفارش شما ثبت شد. به‌زودی با شما تماس می‌گیریم.';
+      document.getElementById('orderForm').reset();
+    } else {
+      msg.className = 'order-msg err';
+      msg.textContent = 'خطا در ثبت سفارش. لطفاً مستقیم تماس بگیرید: ۰۹۳۳۴۱۶۰۲۱۵';
+    }
+  })
+  .catch(function(){
+    msg.className = 'order-msg err';
+    msg.textContent = 'خطا در ارتباط با سرور. لطفاً مستقیم تماس بگیرید: ۰۹۳۳۴۱۶۰۲۱۵';
+  });
+});
+</script>
 
 </body>
 </html>
