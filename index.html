@@ -25,309 +25,152 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Lalezar&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#15171b;
-    --steel:#2b2f36;
-    --steel-2:#3d424b;
-    --paper:#f1efe9;
-    --paper-2:#e7e3d9;
-    --red:#1a3fa0;
-    --red-dim:#102766;
-    --gold:#b8912f;
-    --line: rgba(255,255,255,0.10);
-    --line-dark: rgba(21,23,27,0.12);
-    --radius: 2px;
+    --ink:#15171b; --steel:#2b2f36; --paper:#f1efe9;
+    --red:#1a3fa0; --red-dim:#102766;
+    --line: rgba(255,255,255,0.10); --line-dark: rgba(21,23,27,0.12); --radius:4px;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{
-    font-family:'Vazirmatn', sans-serif;
-    background:var(--paper);
-    color:var(--ink);
-    line-height:1.7;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,.brand .name{font-family:'Lalezar','Vazirmatn',sans-serif;}
+  body{font-family:'Vazirmatn', sans-serif; background:var(--paper); color:var(--ink); line-height:1.7; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Vazirmatn',sans-serif; font-weight:900;}
   img{max-width:100%; display:block;}
   a{color:inherit; text-decoration:none;}
   .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
 
-  /* ===== Header ===== */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:var(--ink);
-    border-bottom:1px solid var(--line);
-  }
-  .nav{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:16px 24px; max-width:1180px; margin:0 auto;
-  }
+  header{position:sticky; top:0; z-index:50; background:var(--ink); border-bottom:1px solid var(--line);}
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1180px; margin:0 auto;}
   .brand{display:flex; align-items:center; gap:12px;}
   .brand img{width:42px; height:42px; border-radius:50%; object-fit:cover; border:2px solid var(--red);}
-  .brand .name{color:#fff; font-weight:800; font-size:22px; letter-spacing:0.5px;}
+  .brand .name{color:#fff; font-weight:900; font-size:22px; letter-spacing:0.5px;}
   .brand .name span{color:var(--red);}
-  nav.links{display:flex; gap:28px;}
-  nav.links a{color:#cfd2d8; font-size:15px; font-weight:500; transition:color .2s;}
-  nav.links a:hover{color:#fff;}
-  .nav-call{
-    display:flex; align-items:center; gap:8px;
-    background:var(--red); color:#fff; padding:9px 18px;
-    font-weight:600; font-size:14px; border-radius:var(--radius);
-  }
-  .burger{display:none; color:#fff; font-size:26px; background:none; border:none; cursor:pointer; z-index:120;}
+  .nav-call{display:flex; align-items:center; gap:8px; background:var(--red); color:#fff; padding:9px 18px; font-weight:700; font-size:14px; border-radius:var(--radius);}
+  .burger{color:#fff; font-size:28px; background:none; border:none; cursor:pointer; z-index:120;}
 
-  /* ===== Mobile menu (off-canvas) ===== */
-  .mobile-menu{
-    position:fixed; inset:0; background:rgba(10,11,13,0.97); z-index:110;
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:26px;
-    opacity:0; pointer-events:none; transition:opacity .25s ease;
-  }
-  .mobile-menu.open{opacity:1; pointer-events:auto;}
-  .mobile-menu a{color:#fff; font-size:22px; font-weight:700;}
-  .mobile-menu .nav-call{margin-top:10px;}
+  .menu-panel{position:fixed; inset:0; background:rgba(10,11,13,0.98); z-index:110; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:22px; opacity:0; pointer-events:none; transition:opacity .25s ease;}
+  .menu-panel.open{opacity:1; pointer-events:auto;}
+  .menu-panel a{color:#fff; font-size:21px; font-weight:800;}
+  .menu-panel .nav-call{margin-top:12px;}
+  .menu-panel .close-x{position:absolute; top:22px; left:22px; color:#fff; font-size:26px; background:none; border:none;}
 
-  /* ===== Hero ===== */
-  .hero{
-    position:relative;
-    min-height:86vh;
-    display:flex; align-items:center;
-    background:
-      linear-gradient(100deg, rgba(15,16,19,0.94) 0%, rgba(15,16,19,0.72) 45%, rgba(15,16,19,0.35) 100%),
-      url('factory-front.jpg') center/cover no-repeat;
-    background-color: var(--ink);
-    overflow:hidden;
-  }
-  .hero-inner{max-width:1180px; margin:0 auto; padding:80px 24px; width:100%;}
-  .hero-tag{
-    color:var(--red); background:#fff; padding:4px 10px; border-radius:2px;
-    font-weight:700; font-size:14px;
-    letter-spacing:2px; margin-bottom:18px; display:inline-block;
-  }
-  .hero h1{
-    color:#fff; font-size:clamp(36px, 6.5vw, 72px);
-    font-weight:400; line-height:1.25; max-width:760px;
-    margin-bottom:24px;
-  }
-  .hero p{
-    color:#d6d8db; font-size:19px; max-width:520px; margin-bottom:36px;
-  }
-  .hero-cta{display:flex; gap:16px; flex-wrap:wrap;}
-  .btn{
-    display:inline-block; padding:15px 30px; font-weight:700; font-size:15px;
-    border-radius:var(--radius); border:2px solid transparent; cursor:pointer;
-    transition:transform .15s ease, background .2s ease;
-    font-family:'Vazirmatn',sans-serif;
-  }
-  .btn:hover{transform:translateY(-2px);}
-  .btn-red{background:var(--red); color:#fff;}
-  .btn-red:hover{background:var(--red-dim);}
-  .btn-ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,0.35);}
-  .btn-ghost:hover{border-color:#fff;}
+  .hero{position:relative; min-height:88vh; display:flex; align-items:center;
+    background:linear-gradient(100deg, rgba(15,16,19,0.94) 0%, rgba(15,16,19,0.72) 45%, rgba(15,16,19,0.35) 100%), url('factory-front.jpg') center/cover no-repeat;
+    background-color: var(--ink); overflow:hidden;}
+  .hero-inner{max-width:1180px; margin:0 auto; padding:70px 24px 40px; width:100%;}
+  .hero-tag{color:#fff; background:var(--red); padding:5px 12px; border-radius:2px; font-weight:800; font-size:14px; letter-spacing:1px; margin-bottom:18px; display:inline-block;}
+  .hero h1{color:#fff; font-size:clamp(34px, 6vw, 62px); font-weight:900; line-height:1.3; max-width:760px; margin-bottom:16px;}
+  .hero p{color:#d6d8db; font-size:18px; max-width:520px; margin-bottom:20px;}
 
-  .hero-stats{
-    display:flex; gap:0; margin-top:64px; border-top:1px solid rgba(255,255,255,0.15);
-    padding-top:28px; max-width:640px; flex-wrap:wrap;
-  }
-  .stat{padding-left:40px; margin-left:40px; border-left:1px solid rgba(255,255,255,0.15);}
-  .stat:last-child{border-left:none;}
-  .stat b{display:block; color:#fff; font-size:30px; font-weight:800; font-family:'Vazirmatn',sans-serif;}
-  .stat span{color:#a6a9ae; font-size:13px;}
-
-  /* ===== Hero clock + calendar widget ===== */
-  .hero-widgets{
-    position:absolute; top:28px; left:28px; display:flex; gap:14px; z-index:5;
-  }
-  .clock-card{
-    width:92px; height:92px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #2a55c9, var(--red-dim));
-    border:3px solid #dfe4ee; box-shadow:0 6px 18px rgba(0,0,0,0.35); position:relative;
-  }
-  .clock-card .tick{position:absolute; background:#e9ecf3; width:2px; height:6px; top:4px; left:50%; transform-origin:1px 42px;}
+  .hero-widgets{display:flex; gap:14px; margin-top:8px; margin-bottom:8px;}
+  .clock-card{width:96px; height:96px; border-radius:50%; position:relative; border:3px solid #dfe4ee; box-shadow:0 6px 18px rgba(0,0,0,0.4);
+    background:linear-gradient(rgba(10,20,60,0.55), rgba(10,20,60,0.72)), url('logo.jpg') center/cover no-repeat;}
+  .clock-card .tick{position:absolute; background:#e9ecf3; width:2px; height:6px; top:5px; left:50%; transform-origin:1px 43px;}
   .clock-hand{position:absolute; background:#f4f6fb; left:50%; bottom:50%; transform-origin:bottom center; border-radius:2px;}
-  .hand-h{width:3px; height:22px; margin-left:-1.5px;}
-  .hand-m{width:2px; height:30px; margin-left:-1px;}
-  .hand-s{width:1px; height:34px; margin-left:-0.5px; background:var(--gold);}
+  .hand-h{width:3px; height:23px; margin-left:-1.5px;}
+  .hand-m{width:2px; height:31px; margin-left:-1px;}
+  .hand-s{width:1px; height:35px; margin-left:-0.5px; background:#e0b23c;}
   .clock-center{position:absolute; width:6px; height:6px; background:#fff; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%);}
-  .cal-card{
-    background:#fff; border-radius:8px; overflow:hidden; width:92px; text-align:center;
-    box-shadow:0 6px 18px rgba(0,0,0,0.35);
-  }
-  .cal-top{background:var(--red); color:#fff; font-size:11px; font-weight:700; padding:4px 0;}
-  .cal-day{font-size:28px; font-weight:800; color:var(--ink); padding:4px 0 0; font-family:'Vazirmatn',sans-serif;}
-  .cal-month{font-size:11px; color:#666; padding-bottom:6px;}
+  .cal-card{background:#fff; border-radius:10px; overflow:hidden; width:96px; text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.4);}
+  .cal-top{background:var(--red); color:#fff; font-size:11px; font-weight:800; padding:5px 0;}
+  .cal-day{font-size:30px; font-weight:900; color:var(--ink); padding:5px 0 0;}
+  .cal-month{font-size:11px; color:#666; padding-bottom:7px; font-weight:700;}
   .cal-card.holiday .cal-day{color:var(--red);}
-  .cal-holiday-tag{font-size:10px; color:#fff; background:var(--red); padding:2px 0; display:none;}
+  .cal-holiday-tag{font-size:10px; color:#fff; background:var(--red); padding:2px 0; display:none; font-weight:800;}
   .cal-card.holiday .cal-holiday-tag{display:block;}
 
-  /* ===== Section heading ===== */
-  .sec{padding:96px 0;}
-  .sec-head{max-width:640px; margin-bottom:56px;}
-  .sec-head h2{font-size:clamp(26px,4vw,40px); font-weight:400; margin-bottom:14px;}
-  .sec-head p{font-size:16px; color:#4c4f55;}
+  .quick-contact{background:#fff; border-top:3px solid var(--red);}
+  .qc-inner{max-width:1180px; margin:0 auto; padding:28px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;}
+  .qc-phone{display:flex; flex-direction:column; gap:4px;}
+  .qc-phone a{font-weight:900; font-size:20px; color:var(--ink);}
+  .qc-phone span{font-size:12.5px; color:#777; font-weight:700;}
+  .social-row{display:flex; gap:12px;}
+  .social-row a{width:44px; height:44px; border-radius:50%; background:var(--ink); display:flex; align-items:center; justify-content:center; transition:background .2s;}
+  .social-row a:hover{background:var(--red);}
+  .social-row svg{width:21px; height:21px; fill:#fff;}
+
+  .page-section{display:none;}
+  .page-section.active{display:block;}
+  .page-top{background:var(--ink); color:#fff; padding:26px 0;}
+  .page-top .wrap{display:flex; align-items:center; gap:16px;}
+  .back-home{background:var(--red); color:#fff; border:none; border-radius:50%; width:38px; height:38px; font-size:18px; cursor:pointer; flex:none;}
+  .page-top h2{font-size:24px; font-weight:900;}
+
+  .sec{padding:56px 0;}
+  .sec-head{max-width:640px; margin-bottom:40px;}
+  .sec-head p{font-size:16px; color:#4c4f55; font-weight:600;}
   .sec-dark{background:var(--ink); color:#fff;}
-  .sec-dark .sec-head p{color:#aeb1b6;}
+  .sec-dark .sec-head p{color:#c3c6ca;}
 
-  /* ===== About ===== */
-  .about-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
-  }
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;}
   .about-grid img{border-radius:var(--radius);}
-  .about-text p{color:#3a3d42; font-size:16.5px; margin-bottom:20px;}
-  .about-list{list-style:none; margin-top:28px; display:grid; gap:14px;}
-  .about-list li{display:flex; gap:12px; align-items:flex-start; font-size:15px; color:#2c2f34;}
-  .about-list li::before{
-    content:''; width:8px; height:8px; background:var(--red); margin-top:8px; flex:none;
-  }
+  .about-text p{color:#2c2f34; font-size:16.5px; margin-bottom:20px; font-weight:600;}
+  .about-list{list-style:none; margin-top:24px; display:grid; gap:14px;}
+  .about-list li{display:flex; gap:12px; align-items:flex-start; font-size:15px; color:#1e2024; font-weight:700;}
+  .about-list li::before{content:''; width:9px; height:9px; background:var(--red); margin-top:8px; flex:none; border-radius:2px;}
 
-  /* ===== Products ===== */
-  .prod-grid{
-    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line-dark);
-    border:1px solid var(--line-dark);
-  }
-  .prod-card{
-    background:var(--paper); padding:28px; position:relative;
-    transition:background .25s ease;
-  }
-  .prod-card:hover{background:#fff;}
-  .prod-thumb{
-    width:100%; aspect-ratio:1/1; background:#fff; border:1px solid var(--line-dark);
-    display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:20px;
-  }
+  .prod-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark);}
+  .prod-card{background:#fff; padding:26px;}
+  .prod-thumb{width:100%; aspect-ratio:1/1; background:#f5f5f5; border:1px solid var(--line-dark); display:flex; align-items:center; justify-content:center; overflow:hidden; margin-bottom:18px;}
   .prod-thumb img{width:100%; height:100%; object-fit:cover;}
-  .prod-card h3{font-size:20px; font-weight:400; margin-bottom:6px;}
-  .prod-card .code{color:var(--red); font-size:13px; font-weight:700; letter-spacing:0.5px; margin-bottom:12px; display:block;}
-  .prod-card p{font-size:14px; color:#5a5d63; margin-bottom:16px;}
-  .prod-link{
-    font-size:13.5px; font-weight:700; color:var(--ink); border-bottom:2px solid var(--red);
-    padding-bottom:2px; display:inline-block; background:none; cursor:pointer; font-family:'Vazirmatn',sans-serif;
-  }
+  .prod-thumb.empty{color:#9a9da2; font-size:13px; font-weight:800; text-align:center; padding:10px;}
+  .prod-card h3{font-size:19px; font-weight:900; margin-bottom:8px; line-height:1.4;}
+  .prod-compat{font-size:13px; color:var(--red); font-weight:800; margin-bottom:14px; line-height:1.8;}
+  .prod-link{font-size:13.5px; font-weight:800; color:#fff; background:var(--red); padding:9px 16px; display:inline-block; cursor:pointer; border:none; border-radius:4px; font-family:'Vazirmatn',sans-serif;}
 
-  /* ===== Quality ===== */
-  .qc-grid{
-    display:grid; grid-template-columns:repeat(4, 1fr); gap:2px;
-  }
+  .qc-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:3px;}
   .qc-item{position:relative; aspect-ratio:3/4; overflow:hidden; background:#111;}
-  .qc-item img{width:100%; height:100%; object-fit:cover; opacity:0.9; transition:opacity .3s, transform .4s;}
-  .qc-item:hover img{opacity:1; transform:scale(1.04);}
-  .qc-cap{
-    position:absolute; bottom:0; right:0; left:0; padding:14px;
-    background:var(--red);
-    color:#fff; font-size:13.5px; font-weight:800; text-align:center;
-  }
+  .qc-item img{width:100%; height:100%; object-fit:cover;}
+  .qc-cap{position:absolute; bottom:0; right:0; left:0; padding:12px 6px; background:#fff; color:var(--red); font-size:14px; font-weight:900; text-align:center; border-top:3px solid var(--red);}
 
-  /* ===== Management ===== */
-  .mgmt-box{
-    background:var(--steel); border:1px solid var(--line); border-radius:var(--radius);
-    overflow:hidden;
-  }
-  .mgmt-toggle{
-    width:100%; display:flex; align-items:center; justify-content:space-between;
-    padding:26px 32px; background:none; border:none; cursor:pointer; color:#fff;
-    font-family:inherit; font-size:17px; font-weight:700;
-  }
-  .mgmt-toggle .plus{
-    width:30px; height:30px; border:1px solid rgba(255,255,255,0.3); border-radius:50%;
-    display:flex; align-items:center; justify-content:center; font-size:18px; flex:none;
-    transition:transform .3s;
-  }
-  .mgmt-toggle[aria-expanded="true"] .plus{transform:rotate(45deg);}
-  .mgmt-panel{
-    max-height:0; overflow:hidden; transition:max-height .4s ease;
-  }
-  .mgmt-panel.open{max-height:600px;}
-  .mgmt-inner{
-    padding:0 32px 36px; display:grid; grid-template-columns:150px 1fr; gap:28px; align-items:start;
-    border-top:1px solid var(--line);
-  }
-  .mgmt-photo{
-    width:150px; height:150px; border-radius:50%; overflow:hidden; margin-top:32px;
-    border:3px solid var(--red);
-  }
+  .mgmt-photo{width:170px; height:170px; border-radius:50%; overflow:hidden; margin:0 auto 24px; border:3px solid var(--red);}
   .mgmt-photo img{width:100%; height:100%; object-fit:cover;}
-  .mgmt-info{margin-top:32px; color:#e2e4e7;}
-  .mgmt-info h4{font-size:20px; font-weight:400; color:#fff; margin-bottom:4px;}
-  .mgmt-info .role{color:var(--red); font-size:13.5px; font-weight:700; margin-bottom:18px; display:block;}
-  .mgmt-info dl{display:grid; grid-template-columns:auto 1fr; gap:10px 16px; font-size:14.5px;}
-  .mgmt-info dt{color:#9a9da2;}
-  .mgmt-info dd{color:#fff; font-weight:600;}
+  .mgmt-info{text-align:center; color:#fff;}
+  .mgmt-info h4{font-size:22px; font-weight:900; margin-bottom:6px;}
+  .mgmt-info .role{color:var(--red); font-size:14px; font-weight:800; margin-bottom:22px; display:block;}
+  .mgmt-info dl{display:inline-grid; grid-template-columns:auto auto; gap:10px 18px; font-size:15px; text-align:right;}
+  .mgmt-info dt{color:#9a9da2; font-weight:700;}
+  .mgmt-info dd{color:#fff; font-weight:800;}
 
-  /* ===== Info cards (guarantee / wholesale / bulk) ===== */
-  .info-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-  .info-card{
-    background:#fff; border:1px solid var(--line-dark); border-radius:8px; padding:30px;
-  }
-  .info-card .ic-badge{
-    width:46px; height:46px; border-radius:50%; background:var(--red); color:#fff;
-    display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:18px;
-  }
-  .info-card h3{font-size:19px; font-weight:700; margin-bottom:12px;}
-  .info-card ul{list-style:none; display:grid; gap:10px;}
-  .info-card li{font-size:14.5px; color:#3a3d42; display:flex; gap:8px; align-items:flex-start;}
+  .info-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .info-card{background:#fff; border:1px solid var(--line-dark); border-radius:8px; padding:28px;}
+  .info-card .ic-badge{width:48px; height:48px; border-radius:50%; background:var(--red); color:#fff; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px; font-weight:900;}
+  .info-card h3{font-size:18px; font-weight:900; margin-bottom:12px;}
+  .info-card ul{list-style:none; display:grid; gap:9px;}
+  .info-card li{font-size:14.5px; color:#2c2f34; display:flex; gap:8px; align-items:flex-start; font-weight:700;}
   .info-card li::before{content:'—'; color:var(--red); flex:none;}
 
-  /* ===== Order / cart ===== */
-  .order-box{
-    background:#fff; border:1px solid var(--line-dark); border-radius:8px; padding:36px; max-width:640px; margin:0 auto;
-  }
-  .order-box label{display:block; font-size:14px; font-weight:700; margin-bottom:6px; margin-top:18px;}
+  .order-box{background:#fff; border:1px solid var(--line-dark); border-radius:8px; padding:32px; max-width:600px; margin:0 auto;}
+  .order-box label{display:block; font-size:14px; font-weight:800; margin-bottom:6px; margin-top:16px;}
   .order-box label:first-of-type{margin-top:0;}
-  .order-box input, .order-box select, .order-box textarea{
-    width:100%; padding:12px 14px; border:1px solid var(--line-dark); border-radius:6px;
-    font-family:'Vazirmatn',sans-serif; font-size:15px; background:var(--paper);
-  }
+  .order-box input, .order-box select, .order-box textarea{width:100%; padding:12px 14px; border:1px solid var(--line-dark); border-radius:6px; font-family:'Vazirmatn',sans-serif; font-size:15px; background:var(--paper); font-weight:600;}
   .order-box textarea{resize:vertical; min-height:80px;}
-  .order-submit{
-    margin-top:26px; width:100%; background:var(--red); color:#fff; border:none; padding:15px;
-    border-radius:6px; font-weight:700; font-size:16px; cursor:pointer; font-family:'Vazirmatn',sans-serif;
-  }
-  .order-submit:hover{background:var(--red-dim);}
-  .order-msg{margin-top:14px; font-size:14px; font-weight:700; display:none;}
+  .order-submit{margin-top:24px; width:100%; background:var(--red); color:#fff; border:none; padding:15px; border-radius:6px; font-weight:800; font-size:16px; cursor:pointer; font-family:'Vazirmatn',sans-serif;}
+  .order-msg{margin-top:14px; font-size:14px; font-weight:800; display:none;}
   .order-msg.ok{color:#1a7d3a; display:block;}
   .order-msg.err{color:#b3261e; display:block;}
 
-  /* ===== Contact ===== */
-  .contact-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:64px;}
-  .contact-card{
-    background:#fff; border:1px solid var(--line-dark); padding:32px; border-radius:var(--radius);
-  }
-  .contact-card h3{font-size:15px; font-weight:700; margin-bottom:8px;}
-  .contact-card a, .contact-card p{font-size:15px; color:#3a3d42;}
-  .contact-list{display:grid; gap:24px;}
-  .cta-box{
-    background:var(--red); color:#fff; padding:36px; border-radius:var(--radius);
-    display:flex; flex-direction:column; justify-content:center;
-  }
-  .cta-box h3{font-size:24px; font-weight:400; margin-bottom:12px;}
-  .cta-box p{font-size:15px; margin-bottom:24px; opacity:0.92;}
-  .cta-box .btn-ghost{border-color:rgba(255,255,255,0.6);}
+  .contact-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px;}
+  .contact-card{background:#fff; border:1px solid var(--line-dark); padding:30px; border-radius:var(--radius);}
+  .contact-card h3{font-size:15px; font-weight:900; margin-bottom:8px;}
+  .contact-card a, .contact-card p{font-size:15px; color:#2c2f34; font-weight:700;}
+  .contact-list{display:grid; gap:22px;}
+  .cta-box{background:var(--red); color:#fff; padding:34px; border-radius:var(--radius); display:flex; flex-direction:column; justify-content:center;}
+  .cta-box h3{font-size:22px; font-weight:900; margin-bottom:12px;}
+  .cta-box p{font-size:15px; margin-bottom:22px; font-weight:700; opacity:0.95;}
+  .cta-box a{background:#fff; color:var(--red); padding:12px 22px; border-radius:4px; font-weight:800; display:inline-block; width:fit-content;}
 
-  .social-row{display:flex; gap:14px; margin-top:26px;}
-  .social-row a{
-    width:42px; height:42px; border-radius:50%; background:var(--ink); display:flex;
-    align-items:center; justify-content:center; transition:background .2s;
-  }
-  .social-row a:hover{background:var(--red);}
-  .social-row svg{width:20px; height:20px; fill:#fff;}
+  footer{background:var(--ink); color:#9a9da2; padding:26px 0; font-size:13.5px; font-weight:700;}
 
-  /* ===== Footer ===== */
-  footer{background:var(--ink); color:#9a9da2; padding:28px 0; font-size:13.5px;}
-  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
-
-  /* ===== Responsive ===== */
   @media (max-width: 860px){
-    nav.links, .nav-call{display:none;}
-    .burger{display:block;}
-    .about-grid, .contact-grid{grid-template-columns:1fr; gap:36px;}
+    .about-grid, .contact-grid{grid-template-columns:1fr; gap:32px;}
     .prod-grid{grid-template-columns:repeat(2,1fr);}
     .qc-grid{grid-template-columns:repeat(2,1fr);}
     .info-grid{grid-template-columns:1fr;}
-    .mgmt-inner{grid-template-columns:1fr; text-align:center;}
-    .mgmt-photo{margin:32px auto 0;}
-    .mgmt-info dl{grid-template-columns:1fr; text-align:center;}
-    .hero{min-height:80vh;}
-    .sec{padding:64px 0;}
-    .hero-widgets{top:auto; bottom:20px; left:20px;}
+    .hero{min-height:82vh;}
+    .sec{padding:48px 0;}
+    .qc-inner{flex-direction:column; align-items:flex-start;}
   }
 </style>
 </head>
@@ -339,334 +182,50 @@
       <img src="logo.jpg" alt="لوگوی RAYZAN">
       <span class="name">RAYZAN<span>.</span></span>
     </div>
-    <nav class="links">
-      <a href="#about">درباره ما</a>
-      <a href="#products">محصولات</a>
-      <a href="#quality">کنترل کیفیت</a>
-      <a href="#guarantee">گارانتی</a>
-      <a href="#wholesale">فروش عمده</a>
-      <a href="#management">مدیریت</a>
-      <a href="#order">ثبت سفارش</a>
-      <a href="#contact">تماس</a>
-    </nav>
     <a class="nav-call" href="tel:09334160215">۰۹۳۳ ۴۱۶ ۰۲۱۵</a>
-    <button class="burger" onclick="document.getElementById('mobileMenu').classList.add('open')">☰</button>
+    <button class="burger" onclick="document.getElementById('menuPanel').classList.add('open')">☰</button>
   </div>
 </header>
 
-<div class="mobile-menu" id="mobileMenu">
-  <button class="burger" style="position:absolute; top:22px; left:22px;" onclick="document.getElementById('mobileMenu').classList.remove('open')">✕</button>
-  <a href="#about" onclick="closeMenu()">درباره ما</a>
-  <a href="#products" onclick="closeMenu()">محصولات</a>
-  <a href="#quality" onclick="closeMenu()">کنترل کیفیت</a>
-  <a href="#guarantee" onclick="closeMenu()">شرایط گارانتی</a>
-  <a href="#wholesale" onclick="closeMenu()">فروش عمده</a>
-  <a href="#bulk" onclick="closeMenu()">فروش فله</a>
-  <a href="#management" onclick="closeMenu()">مدیریت کارخانه</a>
-  <a href="#order" onclick="closeMenu()">ثبت سفارش</a>
-  <a href="#contact" onclick="closeMenu()">تماس با ما</a>
+<div class="menu-panel" id="menuPanel">
+  <button class="close-x" onclick="document.getElementById('menuPanel').classList.remove('open')">✕</button>
+  <a href="#" onclick="showPage('home'); return false;">خانه</a>
+  <a href="#" onclick="showPage('about'); return false;">درباره ما</a>
+  <a href="#" onclick="showPage('products'); return false;">محصولات</a>
+  <a href="#" onclick="showPage('quality'); return false;">کنترل کیفیت</a>
+  <a href="#" onclick="showPage('guarantee'); return false;">شرایط گارانتی</a>
+  <a href="#" onclick="showPage('wholesale'); return false;">فروش عمده</a>
+  <a href="#" onclick="showPage('bulk'); return false;">فروش فله</a>
+  <a href="#" onclick="showPage('management'); return false;">مدیریت کارخانه</a>
+  <a href="#" onclick="showPage('order'); return false;">ثبت سفارش</a>
+  <a href="#" onclick="showPage('contact'); return false;">تماس با ما</a>
   <a class="nav-call" href="tel:09334160215">۰۹۳۳ ۴۱۶ ۰۲۱۵</a>
 </div>
 
-<section class="hero">
-  <div class="hero-widgets">
-    <div class="clock-card" id="clockCard"></div>
-    <div class="cal-card" id="calCard">
-      <div class="cal-top" id="calWeekday">--</div>
-      <div class="cal-day" id="calDay">--</div>
-      <div class="cal-month" id="calMonth">--</div>
-      <div class="cal-holiday-tag">تعطیل</div>
-    </div>
-  </div>
-  <div class="hero-inner">
-    <span class="hero-tag">تولیدکننده تخصصی دیسک ترمز اسپرت</span>
-    <h1>کیفیت در تولید<br>پیشرو در خدمات<br>تضمین در اصالت<br>با پشتیبانی ۷۲۴</h1>
-    <p>دیسک‌های ترمز اسپرت RAYZAN با استانداردهای صنعتی و تست کنترل کیفیت دقیق، برای خودروهای ایرانی طراحی و تولید می‌شوند.</p>
-    <div class="hero-cta">
-      <a href="#products" class="btn btn-red">مشاهده محصولات</a>
-      <a href="#contact" class="btn btn-ghost">تماس با ما</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><b>۶</b><span>مدل خودرو</span></div>
-      <div class="stat"><b>۱۰۰٪</b><span>ساخت داخل</span></div>
-      <div class="stat"><b>مازندران</b><span>آمل، دابودشت</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="about">
-  <div class="wrap about-grid">
-    <div>
-      <img src="factory-line.jpg" alt="خط تولید کارخانه RAYZAN">
-    </div>
-    <div class="about-text">
-      <div class="sec-head" style="margin-bottom:24px;">
-        <h2>ساخته‌شده در کارخانه، تست‌شده روی جاده</h2>
-      </div>
-      <p>RAYZAN از دل نیاز واقعی رانندگان به قطعه‌ای مطمئن برای ترمزگیری در شرایط سخت متولد شد. هر دیسک، پیش از رسیدن به دست مشتری، مراحل کنترل کیفیت را به‌طور کامل طی می‌کند.</p>
-      <ul class="about-list">
-        <li>طراحی اختصاصی برای هر مدل خودرو، بدون واسطه</li>
-        <li>مواد اولیه با دوام بالا در برابر حرارت ترمزگیری</li>
-        <li>بازرسی ابعادی و بصری روی تک‌تک محصولات</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="sec sec-dark" id="products">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>محصولات</h2>
-      <p>دیسک ترمز اسپرت، مطابق با کد فنی هر خودرو</p>
-    </div>
-  </div>
-  <div class="wrap" style="padding:0;">
-    <div class="prod-grid">
-
-      <div class="prod-card">
-        <div class="prod-thumb"><img src="product-tiba.jpg" alt="دیسک ترمز اسپرت تیبا"></div>
-        <span class="code">TIBA / SAIPA</span>
-        <h3>دیسک ترمز اسپرت تیبا</h3>
-        <p>مطابق با استاندارد کارخانه‌ای، مقاوم در برابر حرارت بالا.</p>
-        <button class="prod-link" onclick="goOrder('تیبا')">افزودن به سفارش</button>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-thumb"><img src="product-pride.jpg" alt="دیسک ترمز اسپرت پراید"></div>
-        <span class="code">PRIDE / SAIPA</span>
-        <h3>دیسک ترمز اسپرت پراید</h3>
-        <p>سازگار با تمامی نسل‌های پراید، نصب استاندارد.</p>
-        <button class="prod-link" onclick="goOrder('پراید')">افزودن به سفارش</button>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-thumb"><img src="product-peugeot405.jpg" alt="دیسک ترمز اسپرت پژو 405"></div>
-        <span class="code">PEUGEOT 405</span>
-        <h3>دیسک ترمز اسپرت پژو ۴۰۵</h3>
-        <p>دقت ابعادی بالا برای ترمزگیری یکنواخت.</p>
-        <button class="prod-link" onclick="goOrder('پژو ۴۰۵')">افزودن به سفارش</button>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-thumb"><img src="product-peugeot206.jpg" alt="دیسک ترمز اسپرت پژو 206"></div>
-        <span class="code">PEUGEOT 206</span>
-        <h3>دیسک ترمز اسپرت پژو ۲۰۶</h3>
-        <p>طراحی‌شده برای رانندگی شهری و برون‌شهری.</p>
-        <button class="prod-link" onclick="goOrder('پژو ۲۰۶')">افزودن به سفارش</button>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-thumb"><img src="product-samand.jpg" alt="دیسک ترمز اسپرت سمند ملی"></div>
-        <span class="code">SAMAND / MELLI</span>
-        <h3>دیسک ترمز اسپرت سمند ملی</h3>
-        <p>ساخته‌شده مطابق کد فنی سمند ملی.</p>
-        <button class="prod-link" onclick="goOrder('سمند ملی')">افزودن به سفارش</button>
-      </div>
-
-      <div class="prod-card">
-        <div class="prod-thumb"><img src="product-l90.jpg" alt="دیسک ترمز اسپرت سمند ال 90"></div>
-        <span class="code">SAMAND L90</span>
-        <h3>دیسک ترمز اسپرت ال۹۰</h3>
-        <p>مشخصات فنی کامل در فایل پیوست قابل مشاهده است.</p>
-        <a class="prod-link" href="L90.pdf" target="_blank">دانلود مشخصات (PDF)</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="quality">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>کنترل کیفیت</h2>
-      <p>هر محصول پیش از بسته‌بندی، مراحل بازرسی را پشت سر می‌گذارد.</p>
-    </div>
-  </div>
-  <div class="qc-grid">
-    <div class="qc-item"><img src="quality-1.jpg" alt="کنترل کیفیت ۱"><div class="qc-cap">بازرسی ابعادی</div></div>
-    <div class="qc-item"><img src="quality-2.jpg" alt="کنترل کیفیت ۲"><div class="qc-cap">تست سطح ترمزگیری</div></div>
-    <div class="qc-item"><img src="quality-3.jpg" alt="کنترل کیفیت ۳"><div class="qc-cap">بازرسی نهایی</div></div>
-    <div class="qc-item"><img src="quality-4.jpg" alt="کنترل کیفیت ۴"><div class="qc-cap">بسته‌بندی و ارسال</div></div>
-  </div>
-</section>
-
-<section class="sec sec-dark" id="guarantee">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>شرایط گارانتی</h2>
-      <p>تعهد کارخانه به کیفیت محصولات RAYZAN</p>
-    </div>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="ic-badge">✓</div>
-        <h3>مدت گارانتی</h3>
-        <ul>
-          <li>۳ تا ۶ ماه، در صورت عدم خوردگی دیسک ترمز</li>
-        </ul>
-      </div>
-      <div class="info-card">
-        <div class="ic-badge">✓</div>
-        <h3>شرط پوشش گارانتی</h3>
-        <ul>
-          <li>عدم ضربه‌خوردگی، به‌خصوص در قسمت داخلی و بیرونی فلنچ‌ها</li>
-        </ul>
-      </div>
-      <div class="info-card">
-        <div class="ic-badge">✓</div>
-        <h3>نحوه استفاده از گارانتی</h3>
-        <ul>
-          <li>تعویض فقط در مراکزی که توسط فروشنده‌های لوازم یدکی معرفی می‌شوند</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="wholesale">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>فروش عمده</h2>
-      <p>شرایط ویژه برای مغازه‌داران و فروشگاه‌های لوازم یدکی</p>
-    </div>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="ic-badge">۳۰</div>
-        <h3>حداقل سفارش</h3>
-        <ul><li>۳۰ عدد بسته‌بندی‌شده</li></ul>
-      </div>
-      <div class="info-card">
-        <div class="ic-badge">٪</div>
-        <h3>تخفیفات</h3>
-        <ul><li>تخفیفات به‌صورت حضوری ارائه می‌شود</li></ul>
-      </div>
-      <div class="info-card">
-        <div class="ic-badge">₪</div>
-        <h3>شرایط پرداخت</h3>
-        <ul>
-          <li>دو سفارش اول: نقدی</li>
-          <li>سفارش‌های بعدی: توافقی</li>
-          <li>میزان تخفیف بسته به تعداد و شرایط پرداخت متفاوت است</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec sec-dark" id="bulk">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>فروش فله (بدون بسته‌بندی)</h2>
-      <p>مناسب برای تعمیرگاه‌ها و توزیع‌کنندگان بزرگ</p>
-    </div>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="ic-badge">۵۰</div>
-        <h3>حداقل سفارش</h3>
-        <ul><li>۵۰ عدد، بدون بسته‌بندی</li></ul>
-      </div>
-      <div class="info-card">
-        <div class="ic-badge">٪</div>
-        <h3>تخفیفات</h3>
-        <ul><li>توافقی، بر اساس تعداد سفارش</li></ul>
-      </div>
-      <div class="info-card">
-        <div class="ic-badge">₪</div>
-        <h3>شرایط پرداخت</h3>
-        <ul><li>بسته به تعداد و شرایط پرداخت، توافقی</li></ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="management">
-  <div class="wrap">
-    <div class="sec-head">
-      <h2>مدیریت کارخانه</h2>
-      <p>مسئولیت مستقیم تولید و کیفیت محصولات RAYZAN.</p>
-    </div>
-    <div class="mgmt-box">
-      <button class="mgmt-toggle" aria-expanded="false" onclick="
-        const p=this.nextElementSibling;
-        const open=p.classList.toggle('open');
-        this.setAttribute('aria-expanded', open);
-      ">
-        مشاهده مشخصات مدیر کارخانه
-        <span class="plus">+</span>
-      </button>
-      <div class="mgmt-panel">
-        <div class="mgmt-inner">
-          <div class="mgmt-photo"><img src="management.jpg" alt="محمد بردیده"></div>
-          <div class="mgmt-info">
-            <h4>محمد بردیده</h4>
-            <span class="role">مدیر کارخانه و بنیان‌گذار RAYZAN</span>
-            <dl>
-              <dt>رشته تحصیلی</dt><dd>برق الکترونیک</dd>
-              <dt>مجوز فعالیت</dt><dd>دارای جواز کسب فروش عمده لوازم یدکی</dd>
-              <dt>محل استقرار</dt><dd>مازندران، آمل، دابودشت</dd>
-            </dl>
-          </div>
+<div id="page-home" class="page-section active">
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="hero-tag">تولیدکننده تخصصی دیسک ترمز اسپرت</span>
+      <h1>کیفیت در تولید<br>پیشرو در خدمات<br>تضمین در اصالت<br>با پشتیبانی ۷۲۴</h1>
+      <p>دیسک‌های ترمز اسپرت RAYZAN با استانداردهای صنعتی و تست کنترل کیفیت دقیق، برای خودروهای ایرانی طراحی و تولید می‌شوند.</p>
+      <div class="hero-widgets">
+        <div class="clock-card" id="clockCard"></div>
+        <div class="cal-card" id="calCard">
+          <div class="cal-top" id="calWeekday">--</div>
+          <div class="cal-day" id="calDay">--</div>
+          <div class="cal-month" id="calMonth">--</div>
+          <div class="cal-holiday-tag">تعطیل</div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="sec sec-dark" id="order">
-  <div class="wrap">
-    <div class="sec-head" style="margin:0 auto 40px; text-align:center; max-width:100%;">
-      <h2>ثبت سفارش</h2>
-      <p>فرم زیر را پر کنید؛ همکاران ما در اسرع وقت با شما تماس می‌گیرند.</p>
-    </div>
-    <form class="order-box" id="orderForm">
-      <label for="ofName">نام و نام خانوادگی</label>
-      <input type="text" id="ofName" required>
-
-      <label for="ofPhone">شماره تماس</label>
-      <input type="tel" id="ofPhone" required>
-
-      <label for="ofProduct">محصول</label>
-      <select id="ofProduct">
-        <option>تیبا</option>
-        <option>پراید</option>
-        <option>پژو ۴۰۵</option>
-        <option>پژو ۲۰۶</option>
-        <option>سمند ملی</option>
-        <option>سمند ال۹۰</option>
-        <option>سایر / مشخص نیست</option>
-      </select>
-
-      <label for="ofQty">تعداد</label>
-      <input type="number" id="ofQty" min="1" value="1">
-
-      <label for="ofNote">توضیحات (اختیاری)</label>
-      <textarea id="ofNote"></textarea>
-
-      <button type="submit" class="order-submit">ثبت سفارش</button>
-      <div class="order-msg" id="ofMsg"></div>
-    </form>
-  </div>
-</section>
-
-<section class="sec" id="contact">
-  <div class="wrap contact-grid">
-    <div class="contact-card">
-      <div class="sec-head" style="margin-bottom:28px;">
-        <h2 style="font-size:26px;">اطلاعات تماس</h2>
-      </div>
-      <div class="contact-list">
-        <div>
-          <h3>تلفن تماس</h3>
-          <a href="tel:09334160215">۰۹۳۳۴۱۶۰۲۱۵</a><br>
-          <a href="tel:09164700215">۰۹۱۶۴۷۰۰۲۱۵</a>
-        </div>
-        <div>
-          <h3>آدرس کارخانه</h3>
-          <p>مازندران، شهرستان آمل، شهر دابودشت</p>
-        </div>
-        <div>
-          <h3>ساعات پاسخگویی</h3>
-          <p>شنبه تا پنجشنبه، ۸ صبح تا ۶ عصر</p>
-        </div>
+  <div class="quick-contact">
+    <div class="qc-inner">
+      <div class="qc-phone">
+        <a href="tel:09334160215">۰۹۳۳۴۱۶۰۲۱۵</a>
+        <a href="tel:09164700215">۰۹۱۶۴۷۰۰۲۱۵</a>
+        <span>مازندران، آمل، دابودشت</span>
       </div>
       <div class="social-row">
         <a href="https://wa.me/989164700215" target="_blank" aria-label="واتس‌اپ">
@@ -686,29 +245,254 @@
         </a>
       </div>
     </div>
-    <div class="cta-box">
-      <h3>سفارش عمده دارید؟</h3>
-      <p>برای مغازه‌داران، تعمیرگاه‌ها و فروشگاه‌های لوازم یدکی قیمت عمده جداگانه ارائه می‌شود.</p>
-      <a href="#wholesale" class="btn btn-ghost">مشاهده شرایط فروش عمده</a>
-    </div>
   </div>
-</section>
+</div>
 
-<footer>
-  <div class="wrap footer-row">
-    <span>© RAYZAN — تولیدکننده دیسک ترمز اسپرت</span>
+<div id="page-about" class="page-section">
+  <div class="page-top"><div class="wrap"><button class="back-home" onclick="showPage('home')">→</button><h2>درباره ما</h2></div></div>
+  <section class="sec">
+    <div class="wrap about-grid">
+      <img src="factory-line.jpg" alt="خط تولید کارخانه RAYZAN">
+      <div class="about-text">
+        <p>RAYZAN از دل نیاز واقعی رانندگان به قطعه‌ای مطمئن برای ترمزگیری در شرایط سخت متولد شد. هر دیسک، پیش از رسیدن به دست مشتری، مراحل کنترل کیفیت را به‌طور کامل طی می‌کند.</p>
+        <ul class="about-list">
+          <li>طراحی اختصاصی برای هر مدل خودرو، بدون واسطه</li>
+          <li>مواد اولیه با دوام بالا در برابر حرارت ترمزگیری</li>
+          <li>بازرسی ابعادی و بصری روی تک‌تک محصولات</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="page-products" class="page-section">
+  <div class="page-top"><div class="wrap"><button class="back-home" onclick="showPage('home')">→</button><h2>محصولات</h2></div></div>
+  <section class="sec" style="padding-top:40px;">
+    <div class="prod-grid">
+
+      <div class="prod-card">
+        <div class="prod-thumb empty">تصویر به‌زودی</div>
+        <h3>دیسک ترمز پراید</h3>
+        <button class="prod-link" onclick="orderProduct('پراید')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-pride.jpg" alt="دیسک ترمز پراید اسپرت"></div>
+        <h3>دیسک ترمز پراید اسپرت</h3>
+        <button class="prod-link" onclick="orderProduct('پراید اسپرت')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb empty">تصویر به‌زودی</div>
+        <h3>دیسک ترمز تیبا</h3>
+        <button class="prod-link" onclick="orderProduct('تیبا')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-tiba.jpg" alt="دیسک ترمز تیبا اسپرت"></div>
+        <h3>دیسک ترمز تیبا اسپرت</h3>
+        <button class="prod-link" onclick="orderProduct('تیبا اسپرت')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb empty">تصویر به‌زودی</div>
+        <h3>دیسک ترمز ال۹۰</h3>
+        <button class="prod-link" onclick="orderProduct('ال۹۰')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-l90.jpg" alt="دیسک ترمز ال۹۰ اسپرت"></div>
+        <h3>دیسک ترمز ال۹۰ اسپرت</h3>
+        <button class="prod-link" onclick="orderProduct('ال۹۰ اسپرت')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb empty">تصویر به‌زودی</div>
+        <h3>دیسک ترمز جلوی پژو ۲۰۶ تیپ ۵</h3>
+        <div class="prod-compat">مشترک با: اچ‌سی‌کراس، رانا، پژو ۲۰۷</div>
+        <button class="prod-link" onclick="orderProduct('پژو ۲۰۶ تیپ ۵')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-peugeot206.jpg" alt="دیسک ترمز جلوی پژو 206 تیپ 5 اسپرت"></div>
+        <h3>دیسک ترمز جلوی پژو ۲۰۶ تیپ ۵ اسپرت</h3>
+        <div class="prod-compat">مشترک با: اچ‌سی‌کراس، رانا، پژو ۲۰۷</div>
+        <button class="prod-link" onclick="orderProduct('پژو ۲۰۶ تیپ ۵ اسپرت')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb empty">تصویر به‌زودی</div>
+        <h3>دیسک ترمز عقب پژو ۲۰۶</h3>
+        <button class="prod-link" onclick="orderProduct('پژو ۲۰۶ - عقب')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb empty">تصویر به‌زودی</div>
+        <h3>دیسک ترمز جلوی پژو ۴۰۵</h3>
+        <div class="prod-compat">مشترک با: پژو اس‌ال‌ایکس، پژو پارس</div>
+        <button class="prod-link" onclick="orderProduct('پژو ۴۰۵')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-peugeot405.jpg" alt="دیسک ترمز جلوی پژو 405 اسپرت"></div>
+        <h3>دیسک ترمز جلوی پژو ۴۰۵ اسپرت</h3>
+        <div class="prod-compat">مشترک با: پژو اس‌ال‌ایکس، پژو پارس</div>
+        <button class="prod-link" onclick="orderProduct('پژو ۴۰۵ اسپرت')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb empty">تصویر به‌زودی</div>
+        <h3>دیسک ترمز جلوی سمند ملی</h3>
+        <div class="prod-compat">مشترک با: زانتیا ۲۰۰۰</div>
+        <button class="prod-link" onclick="orderProduct('سمند ملی')">افزودن به سفارش</button>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-thumb"><img src="product-samand.jpg" alt="دیسک ترمز جلوی سمند ملی اسپرت"></div>
+        <h3>دیسک ترمز جلوی سمند ملی اسپرت</h3>
+        <div class="prod-compat">مشترک با: زانتیا ۲۰۰۰</div>
+        <button class="prod-link" onclick="orderProduct('سمند ملی اسپرت')">افزودن به سفارش</button>
+      </div>
+
+    </div>
+    <div class="wrap" style="margin-top:8px;">
+      <p style="font-size:13.5px; color:#777; font-weight:700;">* برای دیسک ترمز عقب پژو ۲۰۶ فعلاً تصویر اختصاصی موجود نیست؛ به‌محض دریافت عکس واقعی جایگزین می‌شود.</p>
+    </div>
+  </section>
+</div>
+
+<div id="page-quality" class="page-section">
+  <div class="page-top"><div class="wrap"><button class="back-home" onclick="showPage('home')">→</button><h2>کنترل کیفیت</h2></div></div>
+  <div class="qc-grid">
+    <div class="qc-item"><img src="quality-1.jpg" alt="کنترل کیفیت ۱"><div class="qc-cap">بازرسی ابعادی</div></div>
+    <div class="qc-item"><img src="quality-2.jpg" alt="کنترل کیفیت ۲"><div class="qc-cap">تست سطح ترمزگیری</div></div>
+    <div class="qc-item"><img src="quality-3.jpg" alt="کنترل کیفیت ۳"><div class="qc-cap">بازرسی نهایی</div></div>
+    <div class="qc-item"><img src="quality-4.jpg" alt="کنترل کیفیت ۴"><div class="qc-cap">بسته‌بندی و ارسال</div></div>
   </div>
-</footer>
+</div>
+
+<div id="page-guarantee" class="page-section">
+  <div class="page-top"><div class="wrap"><button class="back-home" onclick="showPage('home')">→</button><h2>شرایط گارانتی</h2></div></div>
+  <section class="sec">
+    <div class="wrap info-grid">
+      <div class="info-card"><div class="ic-badge">✓</div><h3>مدت گارانتی</h3><ul><li>۳ تا ۶ ماه، در صورت عدم خوردگی دیسک ترمز</li></ul></div>
+      <div class="info-card"><div class="ic-badge">✓</div><h3>شرط پوشش گارانتی</h3><ul><li>عدم ضربه‌خوردگی، به‌خصوص در قسمت داخلی و بیرونی فلنچ‌ها</li></ul></div>
+      <div class="info-card"><div class="ic-badge">✓</div><h3>نحوه استفاده از گارانتی</h3><ul><li>تعویض فقط در مراکزی که توسط فروشنده‌های لوازم یدکی معرفی می‌شوند</li></ul></div>
+    </div>
+  </section>
+</div>
+
+<div id="page-wholesale" class="page-section">
+  <div class="page-top"><div class="wrap"><button class="back-home" onclick="showPage('home')">→</button><h2>فروش عمده</h2></div></div>
+  <section class="sec">
+    <div class="wrap info-grid">
+      <div class="info-card"><div class="ic-badge">۳۰</div><h3>حداقل سفارش</h3><ul><li>۳۰ عدد بسته‌بندی‌شده</li></ul></div>
+      <div class="info-card"><div class="ic-badge">٪</div><h3>تخفیفات</h3><ul><li>تخفیفات به‌صورت حضوری ارائه می‌شود</li></ul></div>
+      <div class="info-card"><div class="ic-badge">₪</div><h3>شرایط پرداخت</h3><ul><li>دو سفارش اول: نقدی</li><li>سفارش‌های بعدی: توافقی</li></ul></div>
+    </div>
+  </section>
+</div>
+
+<div id="page-bulk" class="page-section">
+  <div class="page-top"><div class="wrap"><button class="back-home" onclick="showPage('home')">→</button><h2>فروش فله (بدون بسته‌بندی)</h2></div></div>
+  <section class="sec">
+    <div class="wrap info-grid">
+      <div class="info-card"><div class="ic-badge">۵۰</div><h3>حداقل سفارش</h3><ul><li>۵۰ عدد، بدون بسته‌بندی</li></ul></div>
+      <div class="info-card"><div class="ic-badge">٪</div><h3>تخفیفات</h3><ul><li>توافقی، بر اساس تعداد سفارش</li></ul></div>
+      <div class="info-card"><div class="ic-badge">₪</div><h3>شرایط پرداخت</h3><ul><li>بسته به تعداد و شرایط پرداخت، توافقی</li></ul></div>
+    </div>
+  </section>
+</div>
+
+<div id="page-management" class="page-section">
+  <div class="page-top"><div class="wrap"><button class="back-home" onclick="showPage('home')">→</button><h2>مدیریت کارخانه</h2></div></div>
+  <section class="sec sec-dark">
+    <div class="wrap" style="max-width:480px;">
+      <div class="mgmt-photo"><img src="management.jpg" alt="محمد بردیده"></div>
+      <div class="mgmt-info">
+        <h4>محمد بردیده</h4>
+        <span class="role">مدیر کارخانه و بنیان‌گذار RAYZAN</span>
+        <dl>
+          <dt>رشته تحصیلی</dt><dd>برق الکترونیک</dd>
+          <dt>مجوز فعالیت</dt><dd>جواز کسب فروش عمده لوازم یدکی</dd>
+          <dt>محل استقرار</dt><dd>مازندران، آمل، دابودشت</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="page-order" class="page-section">
+  <div class="page-top"><div class="wrap"><button class="back-home" onclick="showPage('home')">→</button><h2>ثبت سفارش</h2></div></div>
+  <section class="sec">
+    <div class="wrap">
+      <form class="order-box" id="orderForm">
+        <label for="ofName">نام و نام خانوادگی</label>
+        <input type="text" id="ofName" required>
+        <label for="ofPhone">شماره تماس</label>
+        <input type="tel" id="ofPhone" required>
+        <label for="ofProduct">محصول</label>
+        <select id="ofProduct">
+          <option>پراید</option>
+          <option>پراید اسپرت</option>
+          <option>تیبا</option>
+          <option>تیبا اسپرت</option>
+          <option>ال۹۰</option>
+          <option>ال۹۰ اسپرت</option>
+          <option>پژو ۲۰۶ تیپ ۵</option>
+          <option>پژو ۲۰۶ تیپ ۵ اسپرت</option>
+          <option>پژو ۲۰۶ - عقب</option>
+          <option>پژو ۴۰۵</option>
+          <option>پژو ۴۰۵ اسپرت</option>
+          <option>سمند ملی</option>
+          <option>سمند ملی اسپرت</option>
+          <option>سایر / مشخص نیست</option>
+        </select>
+        <label for="ofQty">تعداد</label>
+        <input type="number" id="ofQty" min="1" value="1">
+        <label for="ofNote">توضیحات (اختیاری)</label>
+        <textarea id="ofNote"></textarea>
+        <button type="submit" class="order-submit">ثبت سفارش</button>
+        <div class="order-msg" id="ofMsg"></div>
+      </form>
+    </div>
+  </section>
+</div>
+
+<div id="page-contact" class="page-section">
+  <div class="page-top"><div class="wrap"><button class="back-home" onclick="showPage('home')">→</button><h2>تماس با ما</h2></div></div>
+  <section class="sec">
+    <div class="wrap contact-grid">
+      <div class="contact-card">
+        <div class="contact-list">
+          <div><h3>تلفن تماس</h3><a href="tel:09334160215">۰۹۳۳۴۱۶۰۲۱۵</a><br><a href="tel:09164700215">۰۹۱۶۴۷۰۰۲۱۵</a></div>
+          <div><h3>آدرس کارخانه</h3><p>مازندران، شهرستان آمل، شهر دابودشت</p></div>
+          <div><h3>ساعات پاسخگویی</h3><p>شنبه تا پنجشنبه، ۸ صبح تا ۶ عصر</p></div>
+        </div>
+      </div>
+      <div class="cta-box">
+        <h3>سفارش عمده دارید؟</h3>
+        <p>برای مغازه‌داران، تعمیرگاه‌ها و فروشگاه‌های لوازم یدکی قیمت عمده جداگانه ارائه می‌شود.</p>
+        <a href="#" onclick="showPage('wholesale'); return false;">مشاهده شرایط فروش عمده</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer><div class="wrap">© RAYZAN — تولیدکننده دیسک ترمز اسپرت</div></footer>
 
 <script>
-function closeMenu(){document.getElementById('mobileMenu').classList.remove('open');}
-
-function goOrder(productName){
-  document.getElementById('ofProduct').value = productName;
-  document.getElementById('order').scrollIntoView({behavior:'smooth'});
+function showPage(name){
+  document.querySelectorAll('.page-section').forEach(function(el){ el.classList.remove('active'); });
+  document.getElementById('page-'+name).classList.add('active');
+  document.getElementById('menuPanel').classList.remove('open');
+  window.scrollTo(0,0);
+}
+function orderProduct(name){
+  showPage('order');
+  document.getElementById('ofProduct').value = name;
 }
 
-/* ===== Live analog clock ===== */
 function buildClockTicks(){
   const card = document.getElementById('clockCard');
   for(let i=0;i<12;i++){
@@ -735,7 +519,6 @@ function tickClock(){
   document.getElementById('hand-s').style.transform = 'rotate(' + (s*6) + 'deg)';
 }
 
-/* ===== Gregorian -> Jalali conversion ===== */
 function toJalali(gy, gm, gd){
   const g_d_m = [0,31,59,90,120,151,181,212,243,273,304,334];
   let jy = (gy <= 1600) ? 0 : 979;
@@ -752,41 +535,29 @@ function toJalali(gy, gm, gd){
   else { jm = 7 + Math.floor((days-186)/30); jd = 1 + ((days-186)%30); }
   return [jy, jm, jd];
 }
-
 const jWeekdays = ['یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه','شنبه'];
 const jMonths = ['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
-/* تعطیلات ثابت رسمی (شمسی) - تعطیلات مذهبی چون بر اساس تقویم قمری هستند سالانه جابجا می‌شوند و باید دستی به‌روزرسانی شوند */
 const fixedHolidays = ['1-1','1-2','1-3','1-4','1-12','1-13','3-14','3-15','11-22','12-29'];
-
 function updateCalendar(){
   const now = new Date();
   const [jy, jm, jd] = toJalali(now.getFullYear(), now.getMonth()+1, now.getDate());
   document.getElementById('calDay').textContent = jd.toLocaleString('fa-IR');
   document.getElementById('calMonth').textContent = jMonths[jm-1];
-  const wd = now.getDay(); // 0=Sunday
+  const wd = now.getDay();
   document.getElementById('calWeekday').textContent = jWeekdays[wd];
   const isFriday = (wd === 5);
   const isFixedHoliday = fixedHolidays.includes(jm+'-'+jd);
   const card = document.getElementById('calCard');
-  if (isFriday || isFixedHoliday){ card.classList.add('holiday'); }
-  else { card.classList.remove('holiday'); }
+  if (isFriday || isFixedHoliday){ card.classList.add('holiday'); } else { card.classList.remove('holiday'); }
 }
+buildClockTicks(); tickClock(); setInterval(tickClock, 1000);
+updateCalendar(); setInterval(updateCalendar, 60000);
 
-buildClockTicks();
-tickClock();
-setInterval(tickClock, 1000);
-updateCalendar();
-setInterval(updateCalendar, 60000);
-
-/* ===== Order form -> Cloudflare Worker -> Telegram ===== */
 document.getElementById('orderForm').addEventListener('submit', function(e){
   e.preventDefault();
   const msg = document.getElementById('ofMsg');
-  msg.className = 'order-msg';
+  msg.className = 'order-msg'; msg.style.display='block'; msg.style.color='#666';
   msg.textContent = 'در حال ارسال...';
-  msg.style.display = 'block';
-  msg.style.color = '#666';
-
   const payload = {
     name: document.getElementById('ofName').value,
     phone: document.getElementById('ofPhone').value,
@@ -794,11 +565,8 @@ document.getElementById('orderForm').addEventListener('submit', function(e){
     quantity: document.getElementById('ofQty').value,
     note: document.getElementById('ofNote').value
   };
-
   fetch('https://rayzan-order.mhbbardideh90.workers.dev', {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify(payload)
+    method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)
   })
   .then(function(res){ return res.json(); })
   .then(function(data){
