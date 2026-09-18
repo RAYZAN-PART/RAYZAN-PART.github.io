@@ -63,21 +63,22 @@
   .hero h1{color:#fff; font-size:clamp(34px, 6vw, 62px); font-weight:900; line-height:1.3; max-width:760px; margin-bottom:16px;}
   .hero p{color:#d6d8db; font-size:18px; max-width:520px; margin-bottom:20px;}
 
-  .hero-widgets{display:flex; gap:14px; margin-top:8px; margin-bottom:8px;}
-  .clock-card{width:96px; height:96px; border-radius:50%; position:relative; border:3px solid #dfe4ee; box-shadow:0 6px 18px rgba(0,0,0,0.4);
-    background:linear-gradient(rgba(10,20,60,0.55), rgba(10,20,60,0.72)), url('logo.jpg') center/cover no-repeat;}
-  .clock-card .tick{position:absolute; background:#e9ecf3; width:2px; height:6px; top:5px; left:50%; transform-origin:1px 43px;}
-  .clock-hand{position:absolute; background:#f4f6fb; left:50%; bottom:50%; transform-origin:bottom center; border-radius:2px;}
-  .hand-h{width:3px; height:23px; margin-left:-1.5px;}
-  .hand-m{width:2px; height:31px; margin-left:-1px;}
-  .hand-s{width:1px; height:35px; margin-left:-0.5px; background:#e0b23c;}
-  .clock-center{position:absolute; width:6px; height:6px; background:#fff; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%);}
-  .cal-card{background:#fff; border-radius:10px; overflow:hidden; width:96px; text-align:center; box-shadow:0 6px 18px rgba(0,0,0,0.4);}
-  .cal-top{background:var(--red); color:#fff; font-size:11px; font-weight:800; padding:5px 0;}
-  .cal-day{font-size:30px; font-weight:900; color:var(--ink); padding:5px 0 0;}
-  .cal-month{font-size:11px; color:#666; padding-bottom:7px; font-weight:700;}
-  .cal-card.holiday .cal-day{color:var(--red);}
-  .cal-holiday-tag{font-size:10px; color:#fff; background:var(--red); padding:2px 0; display:none; font-weight:800;}
+  .hero-widgets{display:flex; gap:18px; margin-top:10px; margin-bottom:8px; align-items:flex-start;}
+  #clockSvg{filter:drop-shadow(0 10px 20px rgba(0,0,0,0.5)); flex:none;}
+
+  .cal-card{
+    border-radius:10px; overflow:hidden; width:104px; text-align:center; position:relative; margin-top:8px;
+    background:linear-gradient(180deg,#fbf9f4,#efeadf);
+    box-shadow:0 10px 24px rgba(0,0,0,0.45);
+  }
+  .cal-rings{position:absolute; top:-7px; left:0; right:0; display:flex; justify-content:space-around; padding:0 18px;}
+  .cal-rings span{width:14px; height:14px; border-radius:50%; background:linear-gradient(160deg,#d9b45c,#8a6415); box-shadow:inset 0 0 0 3px #fbf9f4;}
+  .cal-top{background:linear-gradient(90deg,#1a3fa0,#2c52a8); color:#fff; font-size:11px; font-weight:900; padding:9px 0 6px; letter-spacing:0.5px; margin-top:5px;}
+  .cal-day{font-size:34px; font-weight:900; color:#15171b; padding:6px 0 0; font-family:'Vazirmatn',sans-serif;}
+  .cal-month{font-size:11.5px; color:#6b6f76; padding-bottom:10px; font-weight:800; letter-spacing:0.5px;}
+  .cal-card.holiday .cal-top{background:linear-gradient(90deg,#c0392b,#e04b4b);}
+  .cal-card.holiday .cal-day{color:#c0392b;}
+  .cal-holiday-tag{font-size:10px; color:#fff; background:#c0392b; padding:3px 0; display:none; font-weight:800; letter-spacing:0.5px;}
   .cal-card.holiday .cal-holiday-tag{display:block;}
 
   .quick-contact{background:#fff; border-top:3px solid var(--red);}
@@ -209,8 +210,61 @@
       <h1>کیفیت در تولید<br>پیشرو در خدمات<br>تضمین در اصالت<br>با پشتیبانی ۷۲۴</h1>
       <p>دیسک‌های ترمز اسپرت RAYZAN با استانداردهای صنعتی و تست کنترل کیفیت دقیق، برای خودروهای ایرانی طراحی و تولید می‌شوند.</p>
       <div class="hero-widgets">
-        <div class="clock-card" id="clockCard"></div>
+        <svg id="clockSvg" viewBox="0 0 200 200" width="118" height="118">
+          <defs>
+            <radialGradient id="faceGrad" cx="35%" cy="26%" r="80%">
+              <stop offset="0%" stop-color="#2c52a8"/>
+              <stop offset="60%" stop-color="#132363"/>
+              <stop offset="100%" stop-color="#070d24"/>
+            </radialGradient>
+            <linearGradient id="bezelMetal" x1="15%" y1="0%" x2="85%" y2="100%">
+              <stop offset="0%" stop-color="#e9e9ec"/>
+              <stop offset="30%" stop-color="#9a9ca3"/>
+              <stop offset="55%" stop-color="#5b5d64"/>
+              <stop offset="80%" stop-color="#c7c9cf"/>
+              <stop offset="100%" stop-color="#4a4b50"/>
+            </linearGradient>
+            <radialGradient id="screwGrad" cx="35%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#f2f2f4"/>
+              <stop offset="55%" stop-color="#a9abb1"/>
+              <stop offset="100%" stop-color="#54555a"/>
+            </radialGradient>
+            <linearGradient id="handGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#c9ccd4"/>
+              <stop offset="50%" stop-color="#f7f8fa"/>
+              <stop offset="100%" stop-color="#9fa2aa"/>
+            </linearGradient>
+            <clipPath id="logoClip"><circle cx="100" cy="100" r="32"/></clipPath>
+            <clipPath id="faceClip"><circle cx="100" cy="100" r="76"/></clipPath>
+          </defs>
+
+          <circle cx="100" cy="100" r="98" fill="url(#bezelMetal)"/>
+          <circle cx="100" cy="100" r="86" fill="#20222a"/>
+          <circle cx="100" cy="100" r="82" fill="url(#bezelMetal)" opacity="0.5"/>
+          <circle cx="100" cy="100" r="76" fill="url(#faceGrad)"/>
+
+          <g id="screws"></g>
+
+          <image href="logo.jpg" x="68" y="68" width="64" height="64" opacity="0.25" clip-path="url(#logoClip)"/>
+          <g id="ticksGroup" stroke="#eef1f8" stroke-width="2.6"></g>
+          <text x="100" y="50" text-anchor="middle" fill="#e7c165" font-size="11.5" font-weight="900" font-family="Vazirmatn, sans-serif" letter-spacing="2">RAYZAN</text>
+
+          <g id="handH" filter="url(#softShadow)"><rect x="97" y="56" width="6" height="46" rx="3" fill="url(#handGrad)"/></g>
+          <g id="handM" filter="url(#softShadow)"><rect x="98.3" y="36" width="3.4" height="66" rx="1.7" fill="url(#handGrad)"/></g>
+          <g id="handS"><rect x="99.3" y="26" width="1.4" height="78" fill="#e7c165"/><circle cx="100" cy="30" r="3" fill="#e7c165"/></g>
+          <circle cx="100" cy="100" r="6" fill="url(#screwGrad)" stroke="#2b2d33" stroke-width="1"/>
+
+          <ellipse cx="72" cy="62" rx="58" ry="34" fill="#ffffff" opacity="0.10" clip-path="url(#faceClip)" transform="rotate(-18 72 62)"/>
+          <ellipse cx="130" cy="140" rx="40" ry="18" fill="#ffffff" opacity="0.05" clip-path="url(#faceClip)" transform="rotate(-18 130 140)"/>
+
+          <defs>
+            <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="1.2" stdDeviation="1" flood-color="#000" flood-opacity="0.5"/>
+            </filter>
+          </defs>
+        </svg>
         <div class="cal-card" id="calCard">
+          <div class="cal-rings"><span></span><span></span></div>
           <div class="cal-top" id="calWeekday">--</div>
           <div class="cal-day" id="calDay">--</div>
           <div class="cal-month" id="calMonth">--</div>
@@ -494,29 +548,42 @@ function orderProduct(name){
 }
 
 function buildClockTicks(){
-  const card = document.getElementById('clockCard');
+  const g = document.getElementById('ticksGroup');
   for(let i=0;i<12;i++){
-    const t = document.createElement('div');
-    t.className='tick';
-    t.style.transform = 'rotate(' + (i*30) + 'deg)';
-    card.appendChild(t);
+    const angle = i*30;
+    const rad = (angle-90)*Math.PI/180;
+    const big = (i%3===0);
+    const rOuter = 75, rInner = big ? 62 : 67;
+    const x1 = 100 + rOuter*Math.cos(rad), y1 = 100 + rOuter*Math.sin(rad);
+    const x2 = 100 + rInner*Math.cos(rad), y2 = 100 + rInner*Math.sin(rad);
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+    line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+    if (big){ line.setAttribute('stroke', '#e7c165'); line.setAttribute('stroke-width', '3.4'); }
+    g.appendChild(line);
   }
-  ['h','m','s'].forEach(function(k){
-    const h = document.createElement('div');
-    h.className = 'clock-hand hand-'+k;
-    h.id = 'hand-'+k;
-    card.appendChild(h);
-  });
-  const c = document.createElement('div');
-  c.className='clock-center';
-  card.appendChild(c);
+  const screws = document.getElementById('screws');
+  for(let i=0;i<6;i++){
+    const rad = (i*60)*Math.PI/180;
+    const sx = 100 + 91*Math.cos(rad), sy = 100 + 91*Math.sin(rad);
+    const s = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    s.setAttribute('cx', sx); s.setAttribute('cy', sy); s.setAttribute('r', 5);
+    s.setAttribute('fill', 'url(#screwGrad)');
+    s.setAttribute('stroke', '#3a3b40'); s.setAttribute('stroke-width', '0.6');
+    screws.appendChild(s);
+    const slot = document.createElementNS('http://www.w3.org/2000/svg','line');
+    slot.setAttribute('x1', sx-3); slot.setAttribute('y1', sy-3);
+    slot.setAttribute('x2', sx+3); slot.setAttribute('y2', sy+3);
+    slot.setAttribute('stroke', '#2b2c30'); slot.setAttribute('stroke-width', '1');
+    screws.appendChild(slot);
+  }
 }
 function tickClock(){
   const now = new Date();
   const h = now.getHours()%12, m = now.getMinutes(), s = now.getSeconds();
-  document.getElementById('hand-h').style.transform = 'rotate(' + (h*30 + m*0.5) + 'deg)';
-  document.getElementById('hand-m').style.transform = 'rotate(' + (m*6) + 'deg)';
-  document.getElementById('hand-s').style.transform = 'rotate(' + (s*6) + 'deg)';
+  document.getElementById('handH').setAttribute('transform', 'rotate(' + (h*30 + m*0.5) + ' 100 100)');
+  document.getElementById('handM').setAttribute('transform', 'rotate(' + (m*6) + ' 100 100)');
+  document.getElementById('handS').setAttribute('transform', 'rotate(' + (s*6) + ' 100 100)');
 }
 
 function toJalali(gy, gm, gd){
